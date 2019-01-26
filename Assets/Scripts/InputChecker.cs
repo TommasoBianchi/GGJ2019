@@ -86,7 +86,7 @@ public class InputChecker : MonoBehaviour
         else
         {
             int b = CheckButtonNumber(joystickNumber);
-            if (b != -1)
+            if (b != -1 && b != keyBindings.attackKeyCode)
             {
                 keyBindings.defendKeyCode = b;
                 Debug.Log("Button " + b + " pressed as B on joystick " + joystickNumber);

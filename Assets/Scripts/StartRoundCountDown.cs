@@ -23,6 +23,7 @@ public class StartRoundCountDown : MonoBehaviour
                 // Start round
                 GameManager.StartRound();
                 text.enabled = false;
+                isStarted = false;
             }
         }
     }

@@ -25,3 +25,4 @@ MonoBehaviour:
   countdownForRoundStart: 3
   pressToGetShellUIPrefab: {fileID: 7173272252483661686, guid: a1b1c4cc1f687604f9add00015af2b4c,
     type: 3}
+  healthTransitionTime: 1

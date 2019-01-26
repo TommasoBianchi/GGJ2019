@@ -113,9 +113,8 @@ public class Player : MonoBehaviour
 
     public void PickupShell(Shell shell)
     {
-        currentShellStats = shell.ShellStats;
+        SetupShell(shell.ShellStats);
         Destroy(shell.gameObject);
-        SetupShell(currentShellStats);
     }
 
     public void EnableControls()
@@ -132,13 +131,14 @@ public class Player : MonoBehaviour
         }
         for (int i = 0; i < modelContainerChildren.Count; i++)
         {
-            DestroyImmediate(modelContainerChildren[i].gameObject);
+            Destroy(modelContainerChildren[i].gameObject);
         }
 
-        Instantiate(stats.ModelPrefab, modelContainer);
-        animator = GetComponentInChildren<Animator>();
-        shellValue.SetValue(1);
+        Transform newShell = Instantiate(stats.ModelPrefab, modelContainer);
+        animator = newShell.GetComponentInChildren<Animator>();
+        currentShellStats = stats;
         currentShellHealth = stats.ShellHealth;
+        shellValue.SetValue(currentShellHealth > 0 ? 1 : 0);
     }
 
     private void ReadInputs()
@@ -218,14 +218,14 @@ public class Player : MonoBehaviour
             currentShellHealth = Mathf.Clamp01(currentShellHealth - amount);
             shellValue.SetValue(currentShellHealth / currentShellStats.ShellHealth);
 
-            if(shellValue.Value <= 0.5f)
-            {
-                // TODO: Change material
-            }
-            else if(currentShellHealth <= 0)
+            if (currentShellHealth <= 0)
             {
                 // Break the current shell
                 SetupShell(baseShellStats);
+            }
+            else if (shellValue.Value <= 0.5f)
+            {
+                // TODO: Change material
             }
         }
         else
@@ -237,7 +237,8 @@ public class Player : MonoBehaviour
             {
                 // Die
                 areControlsEnabled = false;
-                Destroy(gameObject, 3);
+                myRigidbody.velocity = Vector3.zero;
+                Destroy(gameObject, 5);
             }
         }
     }
