@@ -93,6 +93,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerID: 0
+  keyBindings: {fileID: 11400000, guid: 752e06db45841e74993058296b79e795, type: 2}
+  baseShellStats: {fileID: 11400000, guid: 223f6f7d8cd03e84da21301c0383add9, type: 2}
 --- !u!1001 &963527758787057748
 PrefabInstance:
   m_ObjectHideFlags: 0
