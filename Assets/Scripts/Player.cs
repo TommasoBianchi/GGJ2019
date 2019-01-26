@@ -57,8 +57,17 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void PickupShell(Shell shell)
+    {
+        currentShellStats = shell.ShellStats;
+        Debug.Log("Pickup shell " + shell.gameObject.name);
+        Destroy(shell.gameObject);
+    }
+
     private void ReadInputs()
     {
+        bool isDefending = Input.GetKey(defendKeyCode);
+
         // Movement
         float xAxis = Input.GetAxis("HorizontalJ" + playerID);
         float yAxis = Input.GetAxis("VerticalJ" + playerID);
@@ -81,50 +90,53 @@ public class Player : MonoBehaviour
         }
 
         // Grab shell
-
-        // TEST        
-        //if (Input.GetKeyDown(attackKeyCode))
-        //{
-        //    Debug.Log("Player" + playerID + " pressed A");
-        //}
-        //if (Input.GetKeyDown(defendKeyCode))
-        //{
-        //    Debug.Log("Player" + playerID + " pressed B");
-        //}
-        // TEST
+        if(currentShellStats.CanPickupShells && isInShellRange && Input.GetKeyDown(attackKeyCode) && !isDefending)
+        {
+            pressToGetShellUI.StartPressing();
+        }
+        if (Input.GetKeyUp(attackKeyCode))
+        {
+            pressToGetShellUI.StopPressing();
+        }
 
         // Attack
-        if(currentShellStats.CanAttack && Input.GetKeyDown(attackKeyCode))
+        if(currentShellStats.CanAttack && Input.GetKeyDown(attackKeyCode) && !isDefending)
         {
             animator.SetTrigger("Attack");
         }
 
         // Block
-        //if (currentShellStats.CanBlock && Input.GetKeyDown(defendKeyCode))
-        //{
-        //    animator.SetBool("Block", true);
-        //}
-        //else if (currentShellStats.CanBlock && Input.GetKeyUp(defendKeyCode))
-        //{
-        //    animator.SetBool("Block", false);
-        //}
-
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "Shell")
+        if (currentShellStats.CanBlock && Input.GetKeyDown(defendKeyCode))
         {
-            Shell shell = GetComponentInParent<Shell>();
-            isInShellRange = true;
+            animator.SetBool("Block", true);
+        }
+        else if (currentShellStats.CanBlock && Input.GetKeyUp(defendKeyCode))
+        {
+            animator.SetBool("Block", false);
+        }
+
+        if (isDefending)
+        {
+            myRigidbody.velocity = Vector3.zero;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
+    {
+        if(currentShellStats.CanPickupShells && collision.gameObject.tag == "Shell")
+        {
+            Shell shell = collision.gameObject.GetComponentInParent<Shell>();
+            isInShellRange = true;
+            pressToGetShellUI.Show(this, shell);
+        }
+    }
+
+    private void OnTriggerExit(Collider collision)
     {
         if (collision.gameObject.tag == "Shell")
         {
-            isInShellRange = false;   
+            isInShellRange = false;
+            pressToGetShellUI.Hide();
         }
     }
 }

@@ -15,3 +15,4 @@ MonoBehaviour:
   movementSpeed: 400
   canAttack: 0
   canBlock: 0
+  canPickupShells: 1
