@@ -774,6 +774,11 @@ MonoBehaviour:
   mapBounds:
     m_Center: {x: 0, y: 0, z: 6}
     m_Extent: {x: 28, y: 0, z: 18}
+  allPlayersKeyBindings:
+  - {fileID: 11400000, guid: 22caaa0f75a08664e80c70234793a470, type: 2}
+  - {fileID: 11400000, guid: 121f21880633d1b4eb960faaf19f3aa4, type: 2}
+  - {fileID: 11400000, guid: 8d2be6167331b664ba10e8fd2f79789e, type: 2}
+  - {fileID: 11400000, guid: b3f3da1ca0a84e04aac598066876a723, type: 2}
   twoPlayersSpawnPositions:
   - {fileID: 1417007411}
   - {fileID: 234874409}

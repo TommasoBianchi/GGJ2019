@@ -67,6 +67,19 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void SetKeyBindings(KeyBindings keyBindings)
+    {
+        if (this.keyBindings != null)
+        {
+            Debug.Log(keyBindings.name);
+            Debug.LogError("Trying to reassign keyBindings to player " + playerID);
+        }
+        else
+        {
+            this.keyBindings = keyBindings;
+        }
+    }
+
     public void PickupShell(Shell shell)
     {
         currentShellStats = shell.ShellStats;

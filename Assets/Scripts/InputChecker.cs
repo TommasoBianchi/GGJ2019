@@ -111,6 +111,11 @@ public class InputChecker : MonoBehaviour
         }
     }
 
+    public static int ReadyPlayersCount()
+    {
+        return allInputCheckers.Count(ic => ic.anyPressed && ic.aPressed && ic.bPressed);
+    }
+
     private int CheckButtonNumber(int joystickNumber)
     {
         for (int i = 0; i < 16; i++)

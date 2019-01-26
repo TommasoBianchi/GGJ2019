@@ -8,6 +8,8 @@ public class StartLevelCountDown : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI text;
+    [SerializeField]
+    private Settings settings;
 
     private bool isStarted;
     private float timeLeft;
@@ -22,6 +24,7 @@ public class StartLevelCountDown : MonoBehaviour
             if(timeLeft <= 0)
             {
                 // Start game
+                settings.NumberOfPlayers = InputChecker.ReadyPlayersCount();
                 SceneManager.LoadScene("ArenaScene");
                 text.enabled = false;
             }

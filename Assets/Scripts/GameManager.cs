@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     private Bounds mapBounds;
 
     [SerializeField]
+    private KeyBindings[] allPlayersKeyBindings;
+
+    [SerializeField]
     private Transform[] twoPlayersSpawnPositions;
     [SerializeField]
     private Transform[] threePlayersSpawnPositions;
@@ -77,6 +80,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < settings.NumberOfPlayers; i++)
         {
             Player player = Instantiate(playerPrefab, spawnPositions[i].position, Quaternion.identity);
+            player.SetKeyBindings(allPlayersKeyBindings[i]);
             player.SetID(i + 1);
             players.Add(player);
         }
