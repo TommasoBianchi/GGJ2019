@@ -11,10 +11,14 @@ public class Player : MonoBehaviour
     private ShellStats currentShellStats;
 
     private Rigidbody myRigidbody;
+    private PressToGetShellUI pressToGetShellUI;
+
+    private bool isInShellRange = false;
 
     private void Awake()
     {
         myRigidbody = GetComponent<Rigidbody>();
+        pressToGetShellUI = Instantiate(ConstantsManager.PressToGetShellUIPrefab);
     }
 
     private void Update()
@@ -37,6 +41,7 @@ public class Player : MonoBehaviour
 
     private void ReadInputs()
     {
+        // Movement
         float xAxis = Input.GetAxis("HorizontalJ" + playerID);
         float yAxis = Input.GetAxis("VerticalJ" + playerID);
 
@@ -53,6 +58,36 @@ public class Player : MonoBehaviour
             {
                 myRigidbody.rotation = targetRotation;
             }            
+        }
+
+        // Grab shell
+
+        // TEST
+        if(Input.GetButtonDown("Joystick" + playerID + "A"))
+        {
+            Debug.Log("Player" + playerID + " pressed A");
+        }
+        // TEST
+
+        // Attack
+
+        // Block
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Shell")
+        {
+            Shell shell = GetComponentInParent<Shell>();
+            isInShellRange = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Shell")
+        {
+            isInShellRange = false;   
         }
     }
 }
