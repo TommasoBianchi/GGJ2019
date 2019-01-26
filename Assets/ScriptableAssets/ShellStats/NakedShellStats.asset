@@ -12,8 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1487c8d18b68b434f91184d49a88a286, type: 3}
   m_Name: NakedShellStats
   m_EditorClassIdentifier: 
-  movementSpeed: 400
+  movementSpeed: 10
+  hitDamage: 0
+  attackCooldown: 0
+  shellHealth: 0
   canAttack: 0
   canBlock: 0
   canPickupShells: 1
   modelPrefab: {fileID: 607549059, guid: 79e4ec9e88c5bbf43bc35747768397ff, type: 3}
+  isRanged: 0
+  projectilePrefab: {fileID: 0}
+  projectileSpeed: 0

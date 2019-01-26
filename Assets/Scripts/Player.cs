@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
 
     private bool areControlsEnabled = false;
 
+    private float nextAttackTime = 0;
+
     private void Awake()
     {
         myRigidbody = GetComponent<Rigidbody>();
@@ -111,6 +113,8 @@ public class Player : MonoBehaviour
     private void ReadInputs()
     {
         bool isDefending = Input.GetKey(defendKeyCode);
+        bool isInAttackState = animator.GetCurrentAnimatorStateInfo(1).IsName("Attack");
+        bool canAttack = currentShellStats.CanAttack && Input.GetKeyDown(attackKeyCode) && !isDefending && !isInAttackState;
 
         // Movement
         float xAxis = Input.GetAxis("HorizontalJ" + playerID);
@@ -118,7 +122,7 @@ public class Player : MonoBehaviour
 
         animator.SetBool("Walking", xAxis != 0 || yAxis != 0);
 
-        myRigidbody.velocity = new Vector3(xAxis, 0, yAxis) * Time.deltaTime * currentShellStats.MovementSpeed;
+        myRigidbody.velocity = new Vector3(xAxis, 0, yAxis).normalized * currentShellStats.MovementSpeed;
         if (xAxis != 0 || yAxis != 0)
         {
             Quaternion targetRotation = Quaternion.LookRotation(new Vector3(xAxis, 0, yAxis), Vector3.up);
@@ -144,9 +148,17 @@ public class Player : MonoBehaviour
         }
 
         // Attack
-        if(currentShellStats.CanAttack && Input.GetKeyDown(attackKeyCode) && !isDefending)
+        if(canAttack && Time.time >= nextAttackTime)
         {
             animator.SetTrigger("Attack");
+            if (currentShellStats.IsRanged)
+            {
+                Projectile projectile =  Instantiate(currentShellStats.ProjectilePrefab, 
+                                                     GetComponentInChildren<FiringSpot>().transform.position, 
+                                                     Quaternion.LookRotation(transform.forward, transform.up));
+                projectile.SetSpeed(currentShellStats.ProjectileSpeed);
+                nextAttackTime = Time.time + currentShellStats.AttackCooldown;
+            }
         }
 
         // Block

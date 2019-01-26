@@ -12,8 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1487c8d18b68b434f91184d49a88a286, type: 3}
   m_Name: VichingoShellStats
   m_EditorClassIdentifier: 
-  movementSpeed: 400
+  movementSpeed: 10
+  hitDamage: 0
+  attackCooldown: 0
+  shellHealth: 0
   canAttack: 1
   canBlock: 1
   canPickupShells: 0
   modelPrefab: {fileID: 649582232, guid: cf66a6dd8947fb6438a156441e9bac06, type: 3}
+  isRanged: 0
+  projectilePrefab: {fileID: 0}
+  projectileSpeed: 0

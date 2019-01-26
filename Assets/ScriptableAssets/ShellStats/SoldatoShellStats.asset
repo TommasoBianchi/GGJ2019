@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1487c8d18b68b434f91184d49a88a286, type: 3}
   m_Name: SoldatoShellStats
   m_EditorClassIdentifier: 
-  movementSpeed: 400
+  movementSpeed: 10
+  hitDamage: 0
+  attackCooldown: 0
+  shellHealth: 0
   canAttack: 1
   canBlock: 1
   canPickupShells: 0
   modelPrefab: {fileID: 2071872859, guid: 833520059d17f7c44865feb77b090792, type: 3}
+  isRanged: 1
+  projectilePrefab: {fileID: 986324488468349132, guid: 214463218b9748d41bcc8a3650660201,
+    type: 3}
+  projectileSpeed: 30

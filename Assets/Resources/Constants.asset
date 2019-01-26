@@ -21,7 +21,7 @@ MonoBehaviour:
   - {fileID: 2246477100717879680, guid: 8737bb1a8418c30489876cda3fa05012, type: 3}
   allPropsPrefabs: []
   minDistanceBetweenMapElements: 10
-  countdownForJoystickSelection: 10
+  countdownForJoystickSelection: 2
   countdownForRoundStart: 3
   pressToGetShellUIPrefab: {fileID: 7173272252483661686, guid: a1b1c4cc1f687604f9add00015af2b4c,
     type: 3}

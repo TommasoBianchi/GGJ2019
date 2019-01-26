@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 875596942864126119}
   m_Layer: 0
   m_Name: nurbsCircle8
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 8792067692418009630}
   m_Layer: 0
   m_Name: L_Leg_1
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 4805995929562408175}
   m_Layer: 0
   m_Name: R_Hand
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 8829134461018142336}
   m_Layer: 0
   m_Name: rightforearm
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 4578365555720021263}
   m_Layer: 0
   m_Name: rightforeleg2
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 2778895136672259183}
   m_Layer: 0
   m_Name: SM_Spada
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -428,7 +428,7 @@ GameObject:
   - component: {fileID: 4075163646530599846}
   m_Layer: 0
   m_Name: rightforeleg1
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -542,7 +542,7 @@ GameObject:
   - component: {fileID: 3051091437988204659}
   m_Layer: 0
   m_Name: nurbsCircle2
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -575,7 +575,7 @@ GameObject:
   - component: {fileID: 5733211241102560362}
   m_Layer: 0
   m_Name: body
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -682,7 +682,7 @@ GameObject:
   - component: {fileID: 333657883580691566}
   m_Layer: 0
   m_Name: leftfoot
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -767,7 +767,7 @@ GameObject:
   - component: {fileID: 7331503599247129485}
   m_Layer: 0
   m_Name: leftleg1
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -946,7 +946,7 @@ GameObject:
   - component: {fileID: 5526203629742724540}
   m_Layer: 0
   m_Name: rightleg1
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1126,7 +1126,7 @@ GameObject:
   - component: {fileID: 6977353351802086863}
   m_Layer: 0
   m_Name: PaguroSamurai
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1203,7 +1203,7 @@ GameObject:
   - component: {fileID: 7368848828745686308}
   m_Layer: 0
   m_Name: R_Leg_1
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1235,7 +1235,7 @@ GameObject:
   - component: {fileID: 6448389453511733178}
   m_Layer: 0
   m_Name: leftforearm
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1321,7 +1321,7 @@ GameObject:
   - component: {fileID: 1080575247375105421}
   m_Layer: 0
   m_Name: rightfoot1
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1405,7 +1405,7 @@ GameObject:
   - component: {fileID: 8360795888998619806}
   m_Layer: 0
   m_Name: nurbsCircle6
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1468,7 +1468,7 @@ GameObject:
   - component: {fileID: 3713997052403607919}
   m_Layer: 0
   m_Name: leftarm
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1584,7 +1584,7 @@ GameObject:
   - component: {fileID: 32102387708428134}
   m_Layer: 0
   m_Name: nurbsCircle1
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1616,7 +1616,7 @@ GameObject:
   - component: {fileID: 3212764758041316176}
   m_Layer: 0
   m_Name: mouth
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1702,7 +1702,7 @@ GameObject:
   - component: {fileID: 1491333737571068891}
   m_Layer: 0
   m_Name: leftforeleg1
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1787,7 +1787,7 @@ GameObject:
   - component: {fileID: 7057939748562335936}
   m_Layer: 0
   m_Name: leftfoot2
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1902,7 +1902,7 @@ GameObject:
   - component: {fileID: 5701597119430795465}
   m_Layer: 0
   m_Name: Butt_1
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1964,7 +1964,7 @@ GameObject:
   - component: {fileID: 1635911973489356418}
   m_Layer: 0
   m_Name: lefthand
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2048,7 +2048,7 @@ GameObject:
   - component: {fileID: 468323812915332411}
   m_Layer: 0
   m_Name: nurbsCircle3
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2079,7 +2079,7 @@ GameObject:
   - component: {fileID: 1700043788206095916}
   m_Layer: 0
   m_Name: Pelvis
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2176,7 +2176,7 @@ GameObject:
   - component: {fileID: 8253772582736406105}
   m_Layer: 0
   m_Name: righthand
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2260,7 +2260,7 @@ GameObject:
   - component: {fileID: 4374209224166449820}
   m_Layer: 0
   m_Name: R_Arm
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2291,7 +2291,7 @@ GameObject:
   - component: {fileID: 6477436756452640905}
   m_Layer: 0
   m_Name: Spine
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2324,7 +2324,7 @@ GameObject:
   - component: {fileID: 7848939729961505137}
   m_Layer: 0
   m_Name: leftforeleg2
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2440,7 +2440,7 @@ GameObject:
   - component: {fileID: 7976960293463199768}
   m_Layer: 0
   m_Name: eyes
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2585,7 +2585,7 @@ GameObject:
   - component: {fileID: 2447445973558998947}
   m_Layer: 0
   m_Name: nurbsCircle4
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2617,7 +2617,7 @@ GameObject:
   - component: {fileID: 1203050370825295440}
   m_Layer: 0
   m_Name: rightfoot2
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2702,7 +2702,7 @@ GameObject:
   - component: {fileID: 2058310371165863506}
   m_Layer: 0
   m_Name: rightleg2
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2789,7 +2789,7 @@ GameObject:
   - component: {fileID: 8541268122174464588}
   m_Layer: 0
   m_Name: rightarm
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2874,7 +2874,7 @@ GameObject:
   - component: {fileID: 3796305895008891389}
   m_Layer: 0
   m_Name: nurbsCircle7
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2906,7 +2906,7 @@ GameObject:
   - component: {fileID: 4567833880254728324}
   m_Layer: 0
   m_Name: R_Elbow
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2968,7 +2968,7 @@ GameObject:
   - component: {fileID: 5198932074066327839}
   m_Layer: 0
   m_Name: nurbsCircle5
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3000,7 +3000,7 @@ GameObject:
   - component: {fileID: 2864077497797514111}
   m_Layer: 0
   m_Name: leftleg2
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3116,7 +3116,7 @@ GameObject:
   - component: {fileID: 7605971452132106345}
   m_Layer: 0
   m_Name: R_Leg_2
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3178,7 +3178,7 @@ GameObject:
   - component: {fileID: 23279849688718117}
   m_Layer: 0
   m_Name: L_Arm
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3209,7 +3209,7 @@ GameObject:
   - component: {fileID: 2386151710534707693}
   m_Layer: 0
   m_Name: L_Leg_2
-  m_TagString: Untagged
+  m_TagString: PlayerShell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
