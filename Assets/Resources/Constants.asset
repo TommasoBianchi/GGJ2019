@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ea0dc317e4158f45b9a0a9f0b5bfa71, type: 3}
   m_Name: Constants
   m_EditorClassIdentifier: 
-  exampleConstant: 17
+  rotationSpeed: 10

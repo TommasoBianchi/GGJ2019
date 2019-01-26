@@ -8,13 +8,12 @@ namespace UnityTools.DataManagement
     [CreateAssetMenu(menuName = "UnityTools/DataManagement/ConstantsManager")]
     public class ConstantsManager : ScriptableObject
     {
-        [Header("Example")]
         [SerializeField]
-        private int exampleConstant;
+        private float rotationSpeed;
 
         #region Properties
 
-        public static int ExampleConstant { get { return _instance.exampleConstant; } }
+        public static float RotationSpeed { get { return instance.rotationSpeed; } }
 
         #endregion
 

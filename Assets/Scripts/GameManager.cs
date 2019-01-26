@@ -16,5 +16,11 @@ public class GameManager : MonoBehaviour
             Debug.LogError("There should be only one GameManager in a scene.");
             DestroyImmediate(gameObject);
         }
+
+        Debug.Log("Connected controllers:");
+        foreach(var name in Input.GetJoystickNames())
+        {
+            Debug.Log("Controller: " + name);
+        }
     }
 }
