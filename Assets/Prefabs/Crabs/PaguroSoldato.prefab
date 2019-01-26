@@ -932,6 +932,7 @@ GameObject:
   m_Component:
   - component: {fileID: 551813273}
   - component: {fileID: 551813274}
+  - component: {fileID: 5508212521541501852}
   m_Layer: 0
   m_Name: body
   m_TagString: Untagged
@@ -1015,6 +1016,20 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0.65032864, z: -0.18848729}
     m_Extent: {x: 0.80111766, y: 1.2028973, z: 1.4966099}
   m_DirtyAABB: 0
+--- !u!64 &5508212521541501852
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551813272}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: 01205c16077ca3a4f8db8d258e76a8a1, type: 3}
 --- !u!1 &557830892
 GameObject:
   m_ObjectHideFlags: 0
@@ -2336,6 +2351,7 @@ GameObject:
   - component: {fileID: 1767587914}
   - component: {fileID: 1767587916}
   - component: {fileID: 1767587915}
+  - component: {fileID: 5623504484203711125}
   m_Layer: 0
   m_Name: polySurface5
   m_TagString: Untagged
@@ -2402,6 +2418,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &5623504484203711125
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767587913}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300044, guid: 01205c16077ca3a4f8db8d258e76a8a1, type: 3}
 --- !u!1 &1774918682
 GameObject:
   m_ObjectHideFlags: 0
