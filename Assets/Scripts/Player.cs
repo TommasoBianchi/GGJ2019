@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     private bool isInShellRange = false;
     private bool areControlsEnabled = false;
     private float nextAttackTime = 0;
+    private bool weaponCanHit = false;
 
     private void Awake()
     {
@@ -122,6 +123,11 @@ public class Player : MonoBehaviour
         areControlsEnabled = true;
     }
 
+    public void SetWeaponCanHit(bool value)
+    {
+        this.weaponCanHit = value;
+    }
+
     private void SetupShell(ShellStats stats)
     {
         List<Transform> modelContainerChildren = new List<Transform>();
@@ -145,6 +151,10 @@ public class Player : MonoBehaviour
     {
         bool isDefending = Input.GetKey(defendKeyCode);
         bool isInAttackState = animator.GetCurrentAnimatorStateInfo(1).IsName("Attack");
+        if (!isInAttackState)
+        {
+            weaponCanHit = false;
+        }
         bool canAttack = currentShellStats.CanAttack && Input.GetKeyDown(attackKeyCode) && !isDefending && !isInAttackState;
 
         // Movement
@@ -182,6 +192,7 @@ public class Player : MonoBehaviour
         if(canAttack && Time.time >= nextAttackTime)
         {
             animator.SetTrigger("Attack");
+            weaponCanHit = true;
             if (currentShellStats.IsRanged)
             {
                 Projectile projectile =  Instantiate(currentShellStats.ProjectilePrefab, 
@@ -215,7 +226,11 @@ public class Player : MonoBehaviour
 
         if(currentShellHealth > 0)
         {
-            currentShellHealth = Mathf.Clamp01(currentShellHealth - amount);
+            currentShellHealth = currentShellHealth - amount;
+            if(currentShellHealth < 0)
+            {
+                currentShellHealth = 0;
+            }
             shellValue.SetValue(currentShellHealth / currentShellStats.ShellHealth);
 
             if (currentShellHealth <= 0)
@@ -230,7 +245,11 @@ public class Player : MonoBehaviour
         }
         else
         {
-            currentHealth = Mathf.Clamp01(currentHealth - amount);
+            currentHealth = currentHealth - amount;
+            if(currentShellHealth < 0)
+            {
+                currentShellHealth = 0;
+            }
             healthValue.SetValue(currentHealth / ConstantsManager.BaseCrabLife);
 
             if(currentHealth <= 0)
@@ -283,9 +302,10 @@ public class Player : MonoBehaviour
                 TakeDamage(projectile.HitDamage);
                 Destroy(projectile.gameObject);
             }
-            else
+            else if(otherPlayer.weaponCanHit)
             {
                 TakeDamage(otherPlayer.currentShellStats.HitDamage);
+                otherPlayer.weaponCanHit = false;
             }
         }
     }
