@@ -150,6 +150,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider collision)
+    {
+        if (!isInShellRange && currentShellStats.CanPickupShells && collision.gameObject.tag == "Shell")
+        {
+            Shell shell = collision.gameObject.GetComponentInParent<Shell>();
+            isInShellRange = true;
+            pressToGetShellUI.Show(this, shell);
+        }
+    }
+
     private void OnTriggerExit(Collider collision)
     {
         if (collision.gameObject.tag == "Shell")

@@ -164,6 +164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 197036632}
   - component: {fileID: 197036633}
+  - component: {fileID: 3230041657648911962}
   m_Layer: 0
   m_Name: body
   m_TagString: Untagged
@@ -247,6 +248,20 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0.65032864, z: -0.18848729}
     m_Extent: {x: 0.80111766, y: 1.2028973, z: 1.4966099}
   m_DirtyAABB: 0
+--- !u!64 &3230041657648911962
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197036631}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: ea7168c4fe7e6504695c1024910d98e4, type: 3}
 --- !u!1 &220354498
 GameObject:
   m_ObjectHideFlags: 0
@@ -1076,7 +1091,7 @@ GameObject:
   - component: {fileID: 607549059}
   - component: {fileID: 607549058}
   m_Layer: 0
-  m_Name: paguroplaceholder
+  m_Name: paguroNaked
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

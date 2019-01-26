@@ -335,6 +335,7 @@ GameObject:
   - component: {fileID: 8580952956546188369}
   - component: {fileID: 5142435604173966455}
   - component: {fileID: 8145250307351530243}
+  - component: {fileID: 2778895136672259183}
   m_Layer: 0
   m_Name: SM_Spada
   m_TagString: Untagged
@@ -401,6 +402,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &2778895136672259183
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394904081606736019}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300042, guid: 238b7a3ff2a5f66408da7ab2f9b46e56, type: 3}
 --- !u!1 &1593344939556073784
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,6 +572,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3465643958577712640}
   - component: {fileID: 7199031269563391874}
+  - component: {fileID: 5733211241102560362}
   m_Layer: 0
   m_Name: body
   m_TagString: Untagged
@@ -640,6 +656,20 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0.65032864, z: -0.18848729}
     m_Extent: {x: 0.80111766, y: 1.2028973, z: 1.4966099}
   m_DirtyAABB: 0
+--- !u!64 &5733211241102560362
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715635260400026639}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: 238b7a3ff2a5f66408da7ab2f9b46e56, type: 3}
 --- !u!1 &1805246659825875778
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,6 +1033,7 @@ GameObject:
   - component: {fileID: 93401345389179790}
   - component: {fileID: 3680739937026395815}
   - component: {fileID: 8518941795822271079}
+  - component: {fileID: 2583905585744931341}
   m_Layer: 0
   m_Name: samurai
   m_TagString: Untagged
@@ -1069,6 +1100,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &2583905585744931341
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003724085815680635}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300044, guid: 238b7a3ff2a5f66408da7ab2f9b46e56, type: 3}
 --- !u!1 &2035083288943616267
 GameObject:
   m_ObjectHideFlags: 0
