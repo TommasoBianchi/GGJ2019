@@ -12,6 +12,8 @@ namespace UnityTools.DataManagement
         private float rotationSpeed;
         [SerializeField]
         private float timeToPressToPickupShell;
+        [SerializeField]
+        private float baseCrabLife;
 
         [SerializeField]
         private Shell[] allShellPrefabs;
@@ -28,6 +30,7 @@ namespace UnityTools.DataManagement
 
         public static float RotationSpeed { get { return instance.rotationSpeed; } }
         public static float TimeToPressToPickupShell { get { return instance.timeToPressToPickupShell; } }
+        public static float BaseCrabLife { get { return instance.baseCrabLife; } }
 
         public static Shell[] AllShellPrefabs { get { return instance.allShellPrefabs; } }
         public static GameObject[] AllPropsPrefabs { get { return instance.allPropsPrefabs; } }
