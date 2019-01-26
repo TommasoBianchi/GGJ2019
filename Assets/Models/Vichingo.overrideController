@@ -6,14 +6,14 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Samurai
+  m_Name: Vichingo
   m_Controller: {fileID: 9100000, guid: 5fd2f1cb791e9884c9f4a5f7cab67a61, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400004, guid: 01205c16077ca3a4f8db8d258e76a8a1, type: 3}
-    m_OverrideClip: {fileID: 7400004, guid: 238b7a3ff2a5f66408da7ab2f9b46e56, type: 3}
+    m_OverrideClip: {fileID: 7400004, guid: a1d39935833b486458c3db4da43e7850, type: 3}
   - m_OriginalClip: {fileID: 7400000, guid: 01205c16077ca3a4f8db8d258e76a8a1, type: 3}
-    m_OverrideClip: {fileID: 7400000, guid: 238b7a3ff2a5f66408da7ab2f9b46e56, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: a1d39935833b486458c3db4da43e7850, type: 3}
   - m_OriginalClip: {fileID: 7400002, guid: 01205c16077ca3a4f8db8d258e76a8a1, type: 3}
-    m_OverrideClip: {fileID: 7400002, guid: 238b7a3ff2a5f66408da7ab2f9b46e56, type: 3}
+    m_OverrideClip: {fileID: 7400002, guid: a1d39935833b486458c3db4da43e7850, type: 3}
   - m_OriginalClip: {fileID: 7400006, guid: 01205c16077ca3a4f8db8d258e76a8a1, type: 3}
     m_OverrideClip: {fileID: 7400006, guid: 01205c16077ca3a4f8db8d258e76a8a1, type: 3}
