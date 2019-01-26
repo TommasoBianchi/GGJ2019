@@ -12,6 +12,8 @@ public class ShellStats : ScriptableObject
     private bool canBlock;
     [SerializeField]
     private bool canPickupShells;
+    [SerializeField]
+    private Transform modelPrefab;
 
     #region Properties
 
@@ -19,6 +21,7 @@ public class ShellStats : ScriptableObject
     public bool CanAttack { get { return canAttack; } }
     public bool CanBlock { get { return canBlock; } }
     public bool CanPickupShells { get { return canPickupShells; } }
+    public Transform ModelPrefab { get { return modelPrefab; } }
 
     #endregion
 }

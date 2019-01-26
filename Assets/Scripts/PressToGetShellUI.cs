@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityTools.DataManagement;
 
 public class PressToGetShellUI : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class PressToGetShellUI : MonoBehaviour
     {
         transform.SetParent(FindObjectOfType<Canvas>().transform);
 
-        targetPressDuration = 2; // TODO: read from constant manager
+        targetPressDuration = ConstantsManager.TimeToPressToPickupShell;
         gameObject.SetActive(false);
     }
 

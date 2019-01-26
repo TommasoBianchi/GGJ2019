@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityTools.DataManagement;
 using System;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour
@@ -12,6 +13,8 @@ public class Player : MonoBehaviour
     private KeyBindings keyBindings;
     [SerializeField]
     private ShellStats baseShellStats;
+    [SerializeField]
+    private Transform modelContainer;
 
     private ShellStats currentShellStats;
 
@@ -28,8 +31,8 @@ public class Player : MonoBehaviour
     {
         myRigidbody = GetComponent<Rigidbody>();
         pressToGetShellUI = Instantiate(ConstantsManager.PressToGetShellUIPrefab);
-        animator = GetComponentInChildren<Animator>();
         currentShellStats = baseShellStats;
+        SetupShell(currentShellStats);
     }
 
     private void Update()
@@ -60,8 +63,24 @@ public class Player : MonoBehaviour
     public void PickupShell(Shell shell)
     {
         currentShellStats = shell.ShellStats;
-        Debug.Log("Pickup shell " + shell.gameObject.name);
         Destroy(shell.gameObject);
+        SetupShell(currentShellStats);
+    }
+
+    private void SetupShell(ShellStats stats)
+    {
+        List<Transform> modelContainerChildren = new List<Transform>();
+        for (int i = 0; i < modelContainer.childCount; i++)
+        {
+            modelContainerChildren.Add(modelContainer.GetChild(i));
+        }
+        for (int i = 0; i < modelContainerChildren.Count; i++)
+        {
+            DestroyImmediate(modelContainerChildren[i].gameObject);
+        }
+
+        Instantiate(stats.ModelPrefab, modelContainer);
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void ReadInputs()
