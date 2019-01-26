@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 10
   hitDamage: 0
-  attackCooldown: 0
+  attackCooldown: 1
   shellHealth: 0
   canAttack: 1
   canBlock: 1
