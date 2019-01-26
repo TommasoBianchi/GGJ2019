@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Constants
   m_EditorClassIdentifier: 
   rotationSpeed: 10
+  timeToPressToPickupShell: 1
   allShellPrefabs:
-  - {fileID: 2246477100717879680, guid: 10b7f90d08bbecd4183455b321cae2bd, type: 3}
+  - {fileID: 2246477100717879680, guid: 1df1c917875c17747b06c56e11a82ce7, type: 3}
+  - {fileID: 2246477100717879680, guid: dd7ec2f7d7fd8e048a7621cfa35c8ef5, type: 3}
   allPropsPrefabs: []
   minDistanceBetweenMapElements: 10
   pressToGetShellUIPrefab: {fileID: 7173272252483661686, guid: a1b1c4cc1f687604f9add00015af2b4c,

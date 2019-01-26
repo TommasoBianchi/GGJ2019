@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityTools.DataManagement;
 using System;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour
@@ -12,6 +13,8 @@ public class Player : MonoBehaviour
     private KeyBindings keyBindings;
     [SerializeField]
     private ShellStats baseShellStats;
+    [SerializeField]
+    private Transform modelContainer;
 
     private ShellStats currentShellStats;
 
@@ -28,8 +31,8 @@ public class Player : MonoBehaviour
     {
         myRigidbody = GetComponent<Rigidbody>();
         pressToGetShellUI = Instantiate(ConstantsManager.PressToGetShellUIPrefab);
-        animator = GetComponentInChildren<Animator>();
         currentShellStats = baseShellStats;
+        SetupShell(currentShellStats);
     }
 
     private void Update()
@@ -57,8 +60,33 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void PickupShell(Shell shell)
+    {
+        currentShellStats = shell.ShellStats;
+        Destroy(shell.gameObject);
+        SetupShell(currentShellStats);
+    }
+
+    private void SetupShell(ShellStats stats)
+    {
+        List<Transform> modelContainerChildren = new List<Transform>();
+        for (int i = 0; i < modelContainer.childCount; i++)
+        {
+            modelContainerChildren.Add(modelContainer.GetChild(i));
+        }
+        for (int i = 0; i < modelContainerChildren.Count; i++)
+        {
+            DestroyImmediate(modelContainerChildren[i].gameObject);
+        }
+
+        Instantiate(stats.ModelPrefab, modelContainer);
+        animator = GetComponentInChildren<Animator>();
+    }
+
     private void ReadInputs()
     {
+        bool isDefending = Input.GetKey(defendKeyCode);
+
         // Movement
         float xAxis = Input.GetAxis("HorizontalJ" + playerID);
         float yAxis = Input.GetAxis("VerticalJ" + playerID);
@@ -81,50 +109,53 @@ public class Player : MonoBehaviour
         }
 
         // Grab shell
-
-        // TEST        
-        //if (Input.GetKeyDown(attackKeyCode))
-        //{
-        //    Debug.Log("Player" + playerID + " pressed A");
-        //}
-        //if (Input.GetKeyDown(defendKeyCode))
-        //{
-        //    Debug.Log("Player" + playerID + " pressed B");
-        //}
-        // TEST
+        if(currentShellStats.CanPickupShells && isInShellRange && Input.GetKeyDown(attackKeyCode) && !isDefending)
+        {
+            pressToGetShellUI.StartPressing();
+        }
+        if (Input.GetKeyUp(attackKeyCode))
+        {
+            pressToGetShellUI.StopPressing();
+        }
 
         // Attack
-        if(currentShellStats.CanAttack && Input.GetKeyDown(attackKeyCode))
+        if(currentShellStats.CanAttack && Input.GetKeyDown(attackKeyCode) && !isDefending)
         {
             animator.SetTrigger("Attack");
         }
 
         // Block
-        //if (currentShellStats.CanBlock && Input.GetKeyDown(defendKeyCode))
-        //{
-        //    animator.SetBool("Block", true);
-        //}
-        //else if (currentShellStats.CanBlock && Input.GetKeyUp(defendKeyCode))
-        //{
-        //    animator.SetBool("Block", false);
-        //}
-
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "Shell")
+        if (currentShellStats.CanBlock && Input.GetKeyDown(defendKeyCode))
         {
-            Shell shell = GetComponentInParent<Shell>();
-            isInShellRange = true;
+            animator.SetBool("Block", true);
+        }
+        else if (currentShellStats.CanBlock && Input.GetKeyUp(defendKeyCode))
+        {
+            animator.SetBool("Block", false);
+        }
+
+        if (isDefending)
+        {
+            myRigidbody.velocity = Vector3.zero;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
+    {
+        if(currentShellStats.CanPickupShells && collision.gameObject.tag == "Shell")
+        {
+            Shell shell = collision.gameObject.GetComponentInParent<Shell>();
+            isInShellRange = true;
+            pressToGetShellUI.Show(this, shell);
+        }
+    }
+
+    private void OnTriggerExit(Collider collision)
     {
         if (collision.gameObject.tag == "Shell")
         {
-            isInShellRange = false;   
+            isInShellRange = false;
+            pressToGetShellUI.Hide();
         }
     }
 }

@@ -10,6 +10,8 @@ namespace UnityTools.DataManagement
     {
         [SerializeField]
         private float rotationSpeed;
+        [SerializeField]
+        private float timeToPressToPickupShell;
 
         [SerializeField]
         private Shell[] allShellPrefabs;
@@ -25,6 +27,7 @@ namespace UnityTools.DataManagement
         #region Properties
 
         public static float RotationSpeed { get { return instance.rotationSpeed; } }
+        public static float TimeToPressToPickupShell { get { return instance.timeToPressToPickupShell; } }
 
         public static Shell[] AllShellPrefabs { get { return instance.allShellPrefabs; } }
         public static GameObject[] AllPropsPrefabs { get { return instance.allPropsPrefabs; } }
