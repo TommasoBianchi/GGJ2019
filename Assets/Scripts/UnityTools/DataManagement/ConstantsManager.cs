@@ -29,6 +29,8 @@ namespace UnityTools.DataManagement
 
         [SerializeField]
         private PressToGetShellUI pressToGetShellUIPrefab;
+        [SerializeField]
+        private float healthTransitionTime;
 
         #region Properties
 
@@ -44,6 +46,7 @@ namespace UnityTools.DataManagement
         public static int CountdownForRoundStart { get { return instance.countdownForRoundStart; } }
 
         public static PressToGetShellUI PressToGetShellUIPrefab { get { return instance.pressToGetShellUIPrefab; } }
+        public static float HealthTransitionTime { get { return instance.healthTransitionTime; } }
 
         #endregion
 

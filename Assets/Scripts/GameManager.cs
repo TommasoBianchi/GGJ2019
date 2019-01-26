@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private KeyBindings[] allPlayersKeyBindings;
+    [SerializeField]
+    private FloatValue[] allPlayersHealthValues;
+    [SerializeField]
+    private FloatValue[] allPlayersShellValues;
 
     [SerializeField]
     private Transform[] twoPlayersSpawnPositions;
@@ -81,6 +85,8 @@ public class GameManager : MonoBehaviour
         {
             Player player = Instantiate(playerPrefab, spawnPositions[i].position, Quaternion.identity);
             player.SetKeyBindings(allPlayersKeyBindings[i]);
+            player.SetHealthValue(allPlayersHealthValues[i]);
+            player.SetShellValue(allPlayersShellValues[i]);
             player.SetID(i + 1);
             players.Add(player);
         }

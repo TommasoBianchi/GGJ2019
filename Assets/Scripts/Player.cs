@@ -10,13 +10,17 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int playerID;
     [SerializeField]
-    private KeyBindings keyBindings;
-    [SerializeField]
     private ShellStats baseShellStats;
     [SerializeField]
     private Transform modelContainer;
 
     private ShellStats currentShellStats;
+    private KeyBindings keyBindings;
+    private FloatValue healthValue;
+    private FloatValue shellValue;
+
+    private float currentHealth;
+    private float currentShellHealth;
 
     private Rigidbody myRigidbody;
     private Animator animator;
@@ -26,9 +30,7 @@ public class Player : MonoBehaviour
     private KeyCode defendKeyCode;
 
     private bool isInShellRange = false;
-
     private bool areControlsEnabled = false;
-
     private float nextAttackTime = 0;
 
     private void Awake()
@@ -36,7 +38,7 @@ public class Player : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody>();
         pressToGetShellUI = Instantiate(ConstantsManager.PressToGetShellUIPrefab);
         currentShellStats = baseShellStats;
-        SetupShell(currentShellStats);
+        currentHealth = ConstantsManager.BaseCrabLife;
     }
 
     private void Update()
@@ -61,24 +63,51 @@ public class Player : MonoBehaviour
             playerID = ID;
         }
 
-        bool keyCodeSetup = Enum.TryParse("Joystick" + playerID + "Button" + keyBindings.attackKeyCode, out attackKeyCode);
-        keyCodeSetup &= Enum.TryParse("Joystick" + playerID + "Button" + keyBindings.defendKeyCode, out defendKeyCode);
+        bool keyCodeSetup = Enum.TryParse("Joystick" + keyBindings.joystickNumber + "Button" + keyBindings.attackKeyCode, out attackKeyCode);
+        keyCodeSetup &= Enum.TryParse("Joystick" + keyBindings.joystickNumber + "Button" + keyBindings.defendKeyCode, out defendKeyCode);
         if (!keyCodeSetup)
         {
             Debug.LogError("Problem in setupping key codes for player" + playerID);
         }
+
+        SetupShell(currentShellStats);
     }
 
     public void SetKeyBindings(KeyBindings keyBindings)
     {
         if (this.keyBindings != null)
         {
-            Debug.Log(keyBindings.name);
             Debug.LogError("Trying to reassign keyBindings to player " + playerID);
         }
         else
         {
             this.keyBindings = keyBindings;
+        }
+    }
+
+    public void SetHealthValue(FloatValue healthValue)
+    {
+        if (this.healthValue != null)
+        {
+            Debug.LogError("Trying to reassign healthValue to player " + playerID);
+        }
+        else
+        {
+            this.healthValue = healthValue;
+            healthValue.SetValue(1);
+        }
+    }
+
+    public void SetShellValue(FloatValue shellValue)
+    {
+        if (this.shellValue != null)
+        {
+            Debug.LogError("Trying to reassign shellValue to player " + playerID);
+        }
+        else
+        {
+            this.shellValue = shellValue;
+            shellValue.SetValue(0);
         }
     }
 
@@ -108,6 +137,8 @@ public class Player : MonoBehaviour
 
         Instantiate(stats.ModelPrefab, modelContainer);
         animator = GetComponentInChildren<Animator>();
+        shellValue.SetValue(1);
+        currentShellHealth = stats.ShellHealth;
     }
 
     private void ReadInputs()
@@ -117,8 +148,8 @@ public class Player : MonoBehaviour
         bool canAttack = currentShellStats.CanAttack && Input.GetKeyDown(attackKeyCode) && !isDefending && !isInAttackState;
 
         // Movement
-        float xAxis = Input.GetAxis("HorizontalJ" + playerID);
-        float yAxis = Input.GetAxis("VerticalJ" + playerID);
+        float xAxis = Input.GetAxis("HorizontalJ" + keyBindings.joystickNumber);
+        float yAxis = Input.GetAxis("VerticalJ" + keyBindings.joystickNumber);
 
         animator.SetBool("Walking", xAxis != 0 || yAxis != 0);
 
@@ -157,6 +188,7 @@ public class Player : MonoBehaviour
                                                      GetComponentInChildren<FiringSpot>().transform.position, 
                                                      Quaternion.LookRotation(transform.forward, transform.up));
                 projectile.SetSpeed(currentShellStats.ProjectileSpeed);
+                projectile.HitDamage = currentShellStats.HitDamage;
                 nextAttackTime = Time.time + currentShellStats.AttackCooldown;
             }
         }
@@ -174,6 +206,22 @@ public class Player : MonoBehaviour
         if (isDefending)
         {
             myRigidbody.velocity = Vector3.zero;
+        }
+    }
+
+    private void TakeDamage(float amount)
+    {
+        Debug.Log("Player " + playerID + " is taking " + amount + " damage");
+
+        if(currentShellHealth > 0)
+        {
+            currentShellHealth = Mathf.Clamp01(currentShellHealth - amount);
+            shellValue.SetValue(currentShellHealth / currentShellStats.ShellHealth);
+        }
+        else
+        {
+            currentHealth = Mathf.Clamp01(currentHealth - amount);
+            healthValue.SetValue(currentHealth / ConstantsManager.BaseCrabLife);
         }
     }
 
@@ -203,6 +251,24 @@ public class Player : MonoBehaviour
         {
             isInShellRange = false;
             pressToGetShellUI.Hide();
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.gameObject.tag == "Weapon")
+        {
+            Player otherPlayer = collision.transform.root.GetComponentInChildren<Player>();
+            if (otherPlayer == null)
+            {
+                Projectile projectile = collision.transform.root.GetComponentInChildren<Projectile>();
+                TakeDamage(projectile.HitDamage);
+                Destroy(projectile.gameObject);
+            }
+            else
+            {
+                TakeDamage(otherPlayer.currentShellStats.HitDamage);
+            }
         }
     }
 }

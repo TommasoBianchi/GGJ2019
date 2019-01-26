@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 2778895136672259183}
   m_Layer: 0
   m_Name: SM_Spada
-  m_TagString: PlayerShell
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

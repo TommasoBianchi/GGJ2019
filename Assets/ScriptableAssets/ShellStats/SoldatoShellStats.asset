@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SoldatoShellStats
   m_EditorClassIdentifier: 
   movementSpeed: 10
-  hitDamage: 0
+  hitDamage: 5
   attackCooldown: 1
-  shellHealth: 0
+  shellHealth: 50
   canAttack: 1
   canBlock: 1
   canPickupShells: 0

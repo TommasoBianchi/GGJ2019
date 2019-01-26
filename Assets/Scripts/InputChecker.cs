@@ -63,6 +63,7 @@ public class InputChecker : MonoBehaviour
                 if (b != -1 && !boundJoystick.Contains(i))
                 {
                     joystickNumber = i;
+                    keyBindings.joystickNumber = i;
                     pressAnyText.gameObject.SetActive(false);
                     pressAText.gameObject.SetActive(true);
                     Debug.Log("Player" + playerID + " selected to use joystick " + joystickNumber);

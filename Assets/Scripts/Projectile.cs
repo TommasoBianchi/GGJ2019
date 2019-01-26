@@ -4,6 +4,8 @@
 public class Projectile : MonoBehaviour
 {
 
+    public float HitDamage;
+
     public void SetSpeed(float speed)
     {
         GetComponent<Rigidbody>().velocity = transform.forward * speed;
