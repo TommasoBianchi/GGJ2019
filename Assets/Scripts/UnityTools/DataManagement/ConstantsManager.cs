@@ -11,9 +11,22 @@ namespace UnityTools.DataManagement
         [SerializeField]
         private float rotationSpeed;
 
+        [SerializeField]
+        private Shell[] allShellPrefabs;
+        [SerializeField]
+        private GameObject[] allPropsPrefabs;
+
+        [SerializeField]
+        private float minDistanceBetweenMapElements;
+
         #region Properties
 
         public static float RotationSpeed { get { return instance.rotationSpeed; } }
+
+        public static Shell[] AllShellPrefabs { get { return instance.allShellPrefabs; } }
+        public static GameObject[] AllPropsPrefabs { get { return instance.allPropsPrefabs; } }
+
+        public static float MinDistanceBetweenMapElements { get { return instance.minDistanceBetweenMapElements; } }
 
         #endregion
 

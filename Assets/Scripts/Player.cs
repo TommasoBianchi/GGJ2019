@@ -23,9 +23,16 @@ public class Player : MonoBehaviour
         ReadInputs();
     }
 
-    private void FixedUpdate()
+    public void SetID(int ID)
     {
-
+        if(playerID != 0)
+        {
+            Debug.LogError("Trying to reassign ID to player " + playerID);
+        }
+        else
+        {
+            playerID = ID;
+        }
     }
 
     private void ReadInputs()
