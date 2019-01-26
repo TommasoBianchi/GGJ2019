@@ -16,13 +16,16 @@ public class GameManager : MonoBehaviour
     private Bounds mapBounds;
 
     [SerializeField]
+    private KeyBindings[] allPlayersKeyBindings;
+
+    [SerializeField]
     private Transform[] twoPlayersSpawnPositions;
     [SerializeField]
     private Transform[] threePlayersSpawnPositions;
     [SerializeField]
     private Transform[] fourPlayersSpawnPositions;
 
-    private GameManager _instance;
+    private static GameManager _instance;
 
     private Camera mainCamera;
 
@@ -50,13 +53,21 @@ public class GameManager : MonoBehaviour
 
         mainCamera = Camera.main;
 
-        // TEST
         SetupMapBounds();
-        // TEST
 
         PlacePlayers();
         PlaceShells();
         PlaceProps();
+
+        FindObjectOfType<StartRoundCountDown>().StartCountDown();
+    }
+
+    public static void StartRound()
+    {
+        foreach (var player in _instance.players)
+        {
+            player.EnableControls();
+        }
     }
 
     private void PlacePlayers()
@@ -69,6 +80,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < settings.NumberOfPlayers; i++)
         {
             Player player = Instantiate(playerPrefab, spawnPositions[i].position, Quaternion.identity);
+            player.SetKeyBindings(allPlayersKeyBindings[i]);
             player.SetID(i + 1);
             players.Add(player);
         }

@@ -22,6 +22,10 @@ namespace UnityTools.DataManagement
 
         [SerializeField]
         private float minDistanceBetweenMapElements;
+        [SerializeField]
+        private int countdownForJoystickSelection;
+        [SerializeField]
+        private int countdownForRoundStart;
 
         [SerializeField]
         private PressToGetShellUI pressToGetShellUIPrefab;
@@ -36,6 +40,8 @@ namespace UnityTools.DataManagement
         public static GameObject[] AllPropsPrefabs { get { return instance.allPropsPrefabs; } }
 
         public static float MinDistanceBetweenMapElements { get { return instance.minDistanceBetweenMapElements; } }
+        public static int CountdownForJoystickSelection { get { return instance.countdownForJoystickSelection; } }
+        public static int CountdownForRoundStart { get { return instance.countdownForRoundStart; } }
 
         public static PressToGetShellUI PressToGetShellUIPrefab { get { return instance.pressToGetShellUIPrefab; } }
 

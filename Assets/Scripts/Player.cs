@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
 
     private bool isInShellRange = false;
 
+    private bool areControlsEnabled = false;
+
     private void Awake()
     {
         myRigidbody = GetComponent<Rigidbody>();
@@ -37,6 +39,11 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (!areControlsEnabled)
+        {
+            return;
+        }
+
         // Read controller inputs
         ReadInputs();
     }
@@ -60,11 +67,29 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void SetKeyBindings(KeyBindings keyBindings)
+    {
+        if (this.keyBindings != null)
+        {
+            Debug.Log(keyBindings.name);
+            Debug.LogError("Trying to reassign keyBindings to player " + playerID);
+        }
+        else
+        {
+            this.keyBindings = keyBindings;
+        }
+    }
+
     public void PickupShell(Shell shell)
     {
         currentShellStats = shell.ShellStats;
         Destroy(shell.gameObject);
         SetupShell(currentShellStats);
+    }
+
+    public void EnableControls()
+    {
+        areControlsEnabled = true;
     }
 
     private void SetupShell(ShellStats stats)

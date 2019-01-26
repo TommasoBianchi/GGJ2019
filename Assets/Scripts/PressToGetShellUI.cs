@@ -7,6 +7,10 @@ public class PressToGetShellUI : MonoBehaviour
 
     [SerializeField]
     private Image fillImage;
+    [SerializeField]
+    private Image aImage;
+    [SerializeField]
+    private Sprite holdSprite;
 
     private float targetPressDuration;
     private float startPressingTime;
@@ -14,9 +18,13 @@ public class PressToGetShellUI : MonoBehaviour
     private Player pressingPlayer;
     private Shell targetShell;
 
+    private Sprite notHoldSprite;
+
     private void Awake()
     {
         transform.SetParent(FindObjectOfType<Canvas>().transform);
+
+        notHoldSprite = aImage.sprite;
 
         targetPressDuration = ConstantsManager.TimeToPressToPickupShell;
         gameObject.SetActive(false);
@@ -65,12 +73,14 @@ public class PressToGetShellUI : MonoBehaviour
         isPressing = true;
         startPressingTime = Time.time;
         fillImage.fillAmount = 0;
+        aImage.sprite = holdSprite;
     }
 
     public void StopPressing()
     {
         isPressing = false;
         fillImage.fillAmount = 0;
+        aImage.sprite = notHoldSprite;
     }
 
     private void Position()
