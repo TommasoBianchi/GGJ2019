@@ -10,11 +10,11 @@ namespace UnityTools.DataManagement
     {
         [Header("Example")]
         [SerializeField]
-        private FloatOverridableConstant exampleConstant;
+        private int exampleConstant;
 
         #region Properties
 
-        public static float ExampleConstant { get { return _instance.exampleConstant; } }
+        public static int ExampleConstant { get { return _instance.exampleConstant; } }
 
         #endregion
 
