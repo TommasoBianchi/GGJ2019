@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Transform[] fourPlayersSpawnPositions;
 
-    private GameManager _instance;
+    private static GameManager _instance;
 
     private Camera mainCamera;
 
@@ -50,13 +50,21 @@ public class GameManager : MonoBehaviour
 
         mainCamera = Camera.main;
 
-        // TEST
         SetupMapBounds();
-        // TEST
 
         PlacePlayers();
         PlaceShells();
         PlaceProps();
+
+        FindObjectOfType<StartRoundCountDown>().StartCountDown();
+    }
+
+    public static void StartRound()
+    {
+        foreach (var player in _instance.players)
+        {
+            player.EnableControls();
+        }
     }
 
     private void PlacePlayers()

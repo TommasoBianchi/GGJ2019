@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
 
     private bool isInShellRange = false;
 
+    private bool areControlsEnabled = false;
+
     private void Awake()
     {
         myRigidbody = GetComponent<Rigidbody>();
@@ -37,6 +39,11 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (!areControlsEnabled)
+        {
+            return;
+        }
+
         // Read controller inputs
         ReadInputs();
     }
@@ -65,6 +72,11 @@ public class Player : MonoBehaviour
         currentShellStats = shell.ShellStats;
         Destroy(shell.gameObject);
         SetupShell(currentShellStats);
+    }
+
+    public void EnableControls()
+    {
+        areControlsEnabled = true;
     }
 
     private void SetupShell(ShellStats stats)
