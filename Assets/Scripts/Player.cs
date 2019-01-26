@@ -217,11 +217,28 @@ public class Player : MonoBehaviour
         {
             currentShellHealth = Mathf.Clamp01(currentShellHealth - amount);
             shellValue.SetValue(currentShellHealth / currentShellStats.ShellHealth);
+
+            if(shellValue.Value <= 0.5f)
+            {
+                // TODO: Change material
+            }
+            else if(currentShellHealth <= 0)
+            {
+                // Break the current shell
+                SetupShell(baseShellStats);
+            }
         }
         else
         {
             currentHealth = Mathf.Clamp01(currentHealth - amount);
             healthValue.SetValue(currentHealth / ConstantsManager.BaseCrabLife);
+
+            if(currentHealth <= 0)
+            {
+                // Die
+                areControlsEnabled = false;
+                Destroy(gameObject, 3);
+            }
         }
     }
 
