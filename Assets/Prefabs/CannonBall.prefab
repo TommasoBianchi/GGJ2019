@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 986324488468349132}
   m_Layer: 0
   m_Name: CannonBall
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 1319129247896776102}
   m_Layer: 0
   m_Name: Model
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,6 +115,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 76aeb21d7d22f4f468e8ce7d273fffce, type: 3}
       propertyPath: m_Name
       value: palla di cannone
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 76aeb21d7d22f4f468e8ce7d273fffce, type: 3}
+      propertyPath: m_TagString
+      value: Weapon
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 76aeb21d7d22f4f468e8ce7d273fffce, type: 3}
       propertyPath: m_LocalPosition.x
