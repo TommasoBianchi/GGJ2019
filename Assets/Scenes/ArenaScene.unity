@@ -460,6 +460,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44847db7e7a44564699499898e973e75, type: 3}
+--- !u!224 &266280055 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3806627514846746872, guid: 44847db7e7a44564699499898e973e75,
+    type: 3}
+  m_PrefabInstance: {fileID: 266280054}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &266280056 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3806627514893583645, guid: 44847db7e7a44564699499898e973e75,
+    type: 3}
+  m_PrefabInstance: {fileID: 266280054}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &266280057 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3806627514595238629, guid: 44847db7e7a44564699499898e973e75,
+    type: 3}
+  m_PrefabInstance: {fileID: 266280054}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &266280058 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3806627514644523093, guid: 44847db7e7a44564699499898e973e75,
+    type: 3}
+  m_PrefabInstance: {fileID: 266280054}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &530731787
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,6 +524,7 @@ GameObject:
   m_Component:
   - component: {fileID: 661204911}
   - component: {fileID: 661204910}
+  - component: {fileID: 661204912}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -617,6 +642,65 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &661204912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661204909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb2e5da419586344a0f5ce2284392ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: e16c562cf26ba3a48ab75b3a14bde7f9, type: 2}
+  soundEffects:
+  - type: 0
+    clips:
+    - {fileID: 8300000, guid: 40ea5d7d7718de34785ff64b4c023ae8, type: 3}
+    - {fileID: 8300000, guid: d098383118fc7e544afff605fbab0f51, type: 3}
+    - {fileID: 8300000, guid: 065da2bd3c848104b93038831bd1f1fd, type: 3}
+  - type: 1
+    clips: []
+  - type: 2
+    clips:
+    - {fileID: 8300000, guid: 1784542e42cc9ca49afe002d0c4bf454, type: 3}
+    - {fileID: 8300000, guid: 72784d7e5be1d83438ed3db8f8cb108b, type: 3}
+  - type: 3
+    clips:
+    - {fileID: 8300000, guid: 50e69a95cc48c3348bb94ffca10da833, type: 3}
+    - {fileID: 8300000, guid: bd4eb730a5e12d341b50b2b7b6ce6677, type: 3}
+  - type: 4
+    clips:
+    - {fileID: 8300000, guid: 5a1c274f86576fd41af1ab6f3eaadd91, type: 3}
+  - type: 5
+    clips: []
+  - type: 6
+    clips:
+    - {fileID: 8300000, guid: 97dbb9ff62ee0064cbb3cbc5af14bc78, type: 3}
+  - type: 7
+    clips:
+    - {fileID: 8300000, guid: b8e7bb52c45a99b4ea3b837e2c3e8228, type: 3}
+  - type: 8
+    clips:
+    - {fileID: 8300000, guid: 11ae63428818abe4dabffb91c3e31dbb, type: 3}
+  - type: 9
+    clips:
+    - {fileID: 8300000, guid: 2c54d41cb7b21b143a7a9148961ee4b7, type: 3}
+  - type: 10
+    clips:
+    - {fileID: 8300000, guid: a54fc8bc36c2ae143a41281ed66dbbc0, type: 3}
+  - type: 11
+    clips:
+    - {fileID: 8300000, guid: 2ca1213b3451d58409dac8e87a764723, type: 3}
+    - {fileID: 8300000, guid: a7092a735ed2c8046b92b19a9b5e1078, type: 3}
+    - {fileID: 8300000, guid: dd7d8e68b9fcefe46bb9c55556831f63, type: 3}
+    - {fileID: 8300000, guid: d13d59a480aaf444d8fc1bf10e41854f, type: 3}
+  - type: 12
+    clips:
+    - {fileID: 8300000, guid: 125d0f635805dc4468057d8fadcc6bf0, type: 3}
+    - {fileID: 8300000, guid: e353eb992cc39ee41b048778b9c439cb, type: 3}
 --- !u!1 &783849647
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,11 +1087,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: de49c3b368712794cbdfcb42f28ce6f8, type: 2}
   - {fileID: 11400000, guid: 9fa09809e019ab04792120aead319fb9, type: 2}
   - {fileID: 11400000, guid: 81ec1a4862595d149a58fbb7ef63030f, type: 2}
+  allPlayersRoundWonValues:
+  - {fileID: 11400000, guid: 9ea49ea853d8dfa48b7e165ad62b760e, type: 2}
+  - {fileID: 11400000, guid: 230066043394ea040b5a95203a81f532, type: 2}
+  - {fileID: 11400000, guid: 9d674712f38aba848a201261a4e7691f, type: 2}
+  - {fileID: 11400000, guid: ba153b39d179755458c8cca487949d4a, type: 2}
   allPlayersBaseMaterials:
   - {fileID: 2100000, guid: a382f44187c811146bd638ecc56b32af, type: 2}
+  - {fileID: 2100000, guid: 76e892ec7fca03d4fbb5e5b28ea227f6, type: 2}
   - {fileID: 2100000, guid: c3b164322c135434987445d5478bc099, type: 2}
   - {fileID: 2100000, guid: d63404955bd6524439d419f1b64e892e, type: 2}
-  - {fileID: 2100000, guid: 76e892ec7fca03d4fbb5e5b28ea227f6, type: 2}
+  allPlayersHealthUI:
+  - {fileID: 266280058}
+  - {fileID: 266280057}
+  - {fileID: 266280056}
+  - {fileID: 266280055}
   twoPlayersSpawnPositions:
   - {fileID: 1417007411}
   - {fileID: 234874409}
