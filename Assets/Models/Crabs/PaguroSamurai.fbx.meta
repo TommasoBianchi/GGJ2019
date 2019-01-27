@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 238b7a3ff2a5f66408da7ab2f9b46e56
+guid: f5ccd54c536c7a04ab069f7ed3ec3095
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -128,7 +128,7 @@ ModelImporter:
     2100000: Pagurone_M
     2100002: mouth_M
     2100004: M_spada
-    2100006: Samurai_M
+    2100006: Samurai_M1
     2300000: samurai
     2300002: SM_Spada
     3300000: samurai

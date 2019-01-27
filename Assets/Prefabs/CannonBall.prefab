@@ -61,6 +61,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d278930e738dd7440a4f9fe48f235a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particleSystemPrefab: {fileID: 8161584824228674579, guid: a7ad42a3c700fa34da93d62e256d5d66,
+    type: 3}
+  HitDamage: 0
 --- !u!135 &3761417290420860039
 SphereCollider:
   m_ObjectHideFlags: 0
