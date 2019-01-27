@@ -176,6 +176,11 @@ public class Player : MonoBehaviour
         if (!isInAttackState)
         {
             weaponCanHit = false;
+            TrailRenderer trailRenderer = GetComponentInChildren<TrailRenderer>();
+            if (trailRenderer != null)
+            {
+                trailRenderer.enabled = false;
+            }
         }
         bool canAttack = currentShellStats.CanAttack && Input.GetKeyDown(attackKeyCode) && !isDefending && !isInAttackState;
 
@@ -224,6 +229,12 @@ public class Player : MonoBehaviour
                 projectile.HitDamage = currentShellStats.HitDamage;
                 nextAttackTime = Time.time + currentShellStats.AttackCooldown;
             }
+
+            TrailRenderer trailRenderer = GetComponentInChildren<TrailRenderer>();
+            if(trailRenderer != null)
+            {
+                trailRenderer.enabled = true;
+            }
         }
 
         // Block
@@ -244,8 +255,6 @@ public class Player : MonoBehaviour
 
     private void TakeDamage(float amount)
     {
-        Debug.Log("Player " + playerID + " is taking " + amount + " damage");
-
         if(currentShellHealth > 0)
         {
             currentShellHealth = currentShellHealth - amount;
@@ -283,6 +292,8 @@ public class Player : MonoBehaviour
             {
                 // Die
                 areControlsEnabled = false;
+                animator.SetBool("Block", false);
+                animator.SetBool("IsWalking", false);
                 myRigidbody.velocity = Vector3.zero;
                 Destroy(gameObject, 5);
             }

@@ -4,7 +4,15 @@
 public class Projectile : MonoBehaviour
 {
 
+    [SerializeField]
+    private GameObject particleSystemPrefab;
+
     public float HitDamage;
+
+    private void Awake()
+    {
+        Destroy(Instantiate(particleSystemPrefab, transform.position, Quaternion.identity), 10);
+    }
 
     public void SetSpeed(float speed)
     {

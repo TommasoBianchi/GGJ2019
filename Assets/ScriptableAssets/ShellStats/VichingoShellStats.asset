@@ -19,7 +19,8 @@ MonoBehaviour:
   canAttack: 1
   canBlock: 1
   canPickupShells: 0
-  modelPrefab: {fileID: 649582232, guid: cf66a6dd8947fb6438a156441e9bac06, type: 3}
+  modelPrefab: {fileID: 8897293646931570757, guid: 3c8d04cbc61b19c4ea40a98e86b2b2ff,
+    type: 3}
   isRanged: 0
   projectilePrefab: {fileID: 0}
   projectileSpeed: 0
