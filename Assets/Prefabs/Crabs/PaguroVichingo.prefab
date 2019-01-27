@@ -456,7 +456,7 @@ GameObject:
   - component: {fileID: 3526647350252864232}
   m_Layer: 0
   m_Name: beard
-  m_TagString: PlayerShell
+  m_TagString: SpecialMaterial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1807,7 +1807,7 @@ GameObject:
   - component: {fileID: 3393949175087081354}
   m_Layer: 0
   m_Name: eyebrows
-  m_TagString: PlayerShell
+  m_TagString: SpecialMaterial
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
