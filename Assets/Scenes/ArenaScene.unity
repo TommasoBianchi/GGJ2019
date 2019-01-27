@@ -460,6 +460,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44847db7e7a44564699499898e973e75, type: 3}
+--- !u!224 &266280055 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3806627514846746872, guid: 44847db7e7a44564699499898e973e75,
+    type: 3}
+  m_PrefabInstance: {fileID: 266280054}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &266280056 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3806627514893583645, guid: 44847db7e7a44564699499898e973e75,
+    type: 3}
+  m_PrefabInstance: {fileID: 266280054}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &266280057 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3806627514595238629, guid: 44847db7e7a44564699499898e973e75,
+    type: 3}
+  m_PrefabInstance: {fileID: 266280054}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &266280058 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3806627514644523093, guid: 44847db7e7a44564699499898e973e75,
+    type: 3}
+  m_PrefabInstance: {fileID: 266280054}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &530731787
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,11 +1027,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: de49c3b368712794cbdfcb42f28ce6f8, type: 2}
   - {fileID: 11400000, guid: 9fa09809e019ab04792120aead319fb9, type: 2}
   - {fileID: 11400000, guid: 81ec1a4862595d149a58fbb7ef63030f, type: 2}
+  allPlayersRoundWonValues:
+  - {fileID: 11400000, guid: 9ea49ea853d8dfa48b7e165ad62b760e, type: 2}
+  - {fileID: 11400000, guid: 230066043394ea040b5a95203a81f532, type: 2}
+  - {fileID: 11400000, guid: 9d674712f38aba848a201261a4e7691f, type: 2}
+  - {fileID: 11400000, guid: ba153b39d179755458c8cca487949d4a, type: 2}
   allPlayersBaseMaterials:
   - {fileID: 2100000, guid: a382f44187c811146bd638ecc56b32af, type: 2}
+  - {fileID: 2100000, guid: 76e892ec7fca03d4fbb5e5b28ea227f6, type: 2}
   - {fileID: 2100000, guid: c3b164322c135434987445d5478bc099, type: 2}
   - {fileID: 2100000, guid: d63404955bd6524439d419f1b64e892e, type: 2}
-  - {fileID: 2100000, guid: 76e892ec7fca03d4fbb5e5b28ea227f6, type: 2}
+  allPlayersHealthUI:
+  - {fileID: 266280058}
+  - {fileID: 266280057}
+  - {fileID: 266280056}
+  - {fileID: 266280055}
   twoPlayersSpawnPositions:
   - {fileID: 1417007411}
   - {fileID: 234874409}

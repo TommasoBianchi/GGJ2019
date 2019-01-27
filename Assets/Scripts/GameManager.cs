@@ -2,6 +2,7 @@
 using UnityTools.DataManagement;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,7 +23,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private FloatValue[] allPlayersShellValues;
     [SerializeField]
+    private IntValue[] allPlayersRoundWonValues;
+    [SerializeField]
     private Material[] allPlayersBaseMaterials;
+    [SerializeField]
+    private RectTransform[] allPlayersHealthUI;
 
     [SerializeField]
     private Transform[] twoPlayersSpawnPositions;
@@ -38,6 +43,8 @@ public class GameManager : MonoBehaviour
     private List<Player> players;
     private List<Shell> shells;
     private List<Transform> props;
+
+    private bool isPlayingRound = false;
 
     private void Awake()
     {
@@ -59,6 +66,11 @@ public class GameManager : MonoBehaviour
 
         mainCamera = Camera.main;
 
+        foreach (var r in allPlayersRoundWonValues)
+        {
+            r.SetValue(0);
+        }
+
         //SetupMapBounds();
 
         PlacePlayers();
@@ -73,6 +85,50 @@ public class GameManager : MonoBehaviour
         foreach (var player in _instance.players)
         {
             player.EnableControls();
+        }
+
+        _instance.isPlayingRound = true;
+    }
+
+    public static void PlayerDied()
+    {
+        List<Player> alivePlayers = _instance.players.Where(pl => pl.IsAlive).ToList();
+
+        if(_instance.isPlayingRound &&  alivePlayers.Count == 1)
+        {
+            Player winner = alivePlayers[0];
+
+            IntValue winnerRoundsWon = _instance.allPlayersRoundWonValues[alivePlayers.IndexOf(winner)];
+            winnerRoundsWon.SetValue(winnerRoundsWon.Value + 1);
+
+            if (winnerRoundsWon.Value == 2)
+            {
+                // TODO: win 
+                Debug.Log("WIN");
+                return;
+            }
+
+            Destroy(winner.gameObject);
+
+            for (int i = 0; i < _instance.shells.Count; i++)
+            {
+                if (_instance.shells[i] != null)
+                {
+                    Destroy(_instance.shells[i].gameObject);
+                }
+            }
+
+            //for (int i = 0; i < _instance.props.Count; i++)
+            //{
+            //    Destroy(_instance.props[i].gameObject);
+            //}
+
+            _instance.PlacePlayers();
+            _instance.PlaceShells();
+            _instance.PlaceProps();
+
+            _instance.isPlayingRound = false;
+            FindObjectOfType<StartRoundCountDown>().StartCountDown();
         }
     }
 
@@ -92,6 +148,11 @@ public class GameManager : MonoBehaviour
             player.SetBaseMaterial(allPlayersBaseMaterials[i]);
             player.SetID(i + 1);
             players.Add(player);
+        }
+
+        for (int i = 0; i < allPlayersHealthUI.Length; i++)
+        {
+            allPlayersHealthUI[i].gameObject.SetActive(i < settings.NumberOfPlayers);
         }
     }
 

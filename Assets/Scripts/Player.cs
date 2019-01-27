@@ -36,12 +36,15 @@ public class Player : MonoBehaviour
     private float nextAttackTime = 0;
     private bool weaponCanHit = false;
 
+    public bool IsAlive { get; private set; }
+
     private void Awake()
     {
         myRigidbody = GetComponent<Rigidbody>();
         pressToGetShellUI = Instantiate(ConstantsManager.PressToGetShellUIPrefab);
         currentShellStats = baseShellStats;
         currentHealth = ConstantsManager.BaseCrabLife;
+        IsAlive = true;
     }
 
     private void Update()
@@ -255,7 +258,7 @@ public class Player : MonoBehaviour
 
     private void TakeDamage(float amount)
     {
-        if (animator.GetBool("Block"))
+        if (currentShellStats.CanBlock && animator.GetBool("Block"))
         {
             amount *= ConstantsManager.ShieldAbsorbRate;
         }
@@ -296,6 +299,7 @@ public class Player : MonoBehaviour
             if(currentHealth <= 0)
             {
                 // Die
+                IsAlive = false;
                 areControlsEnabled = false;
                 animator.SetBool("Walking", false);
                 myRigidbody.velocity = Vector3.zero;
@@ -350,5 +354,14 @@ public class Player : MonoBehaviour
                 otherPlayer.weaponCanHit = false;
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (pressToGetShellUI != null)
+        {
+            Destroy(pressToGetShellUI.gameObject);
+        }
+        GameManager.PlayerDied();
     }
 }
