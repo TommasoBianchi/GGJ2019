@@ -23,7 +23,7 @@ MonoBehaviour:
   - {fileID: 2246477100717879680, guid: 8737bb1a8418c30489876cda3fa05012, type: 3}
   allPropsPrefabs: []
   minDistanceBetweenMapElements: 10
-  countdownForJoystickSelection: 3
+  countdownForJoystickSelection: 10
   countdownForRoundStart: 3
   playerDieVFXPrefab: {fileID: 5121464599463861550, guid: da62b0c3a4038c249b5229640ece1137,
     type: 3}
