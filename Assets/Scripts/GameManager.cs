@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
     private List<Transform> props;
 
     private bool isPlayingRound = false;
+    public static bool IsPlayingRound { get { return _instance.isPlayingRound; } }
 
     private void Awake()
     {

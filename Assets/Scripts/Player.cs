@@ -313,6 +313,7 @@ public class Player : MonoBehaviour
                 // Break the current shell
                 SetupShell(baseShellStats);
                 SFXManager.PlaySFX(SFXManager.SFXType.ShellBreak);
+                Destroy(Instantiate(ConstantsManager.PlayerDieVFXPrefab, transform.position, Quaternion.identity), 10);
             }
             else if (shellValue.Value <= 0.5f)
             {
@@ -342,7 +343,7 @@ public class Player : MonoBehaviour
                 areControlsEnabled = false;
                 animator.SetBool("Walking", false);
                 myRigidbody.velocity = Vector3.zero;
-                Destroy(gameObject, 5);
+                Destroy(gameObject, 3);
             }
         }
     }
@@ -397,6 +398,11 @@ public class Player : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (GameManager.IsPlayingRound)
+        {
+            Destroy(Instantiate(ConstantsManager.PlayerDieVFXPrefab, transform.position, Quaternion.identity), 10);
+        }
+
         if (pressToGetShellUI != null)
         {
             Destroy(pressToGetShellUI.gameObject);
