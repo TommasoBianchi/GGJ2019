@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CutsceneAnimator
+  m_Name: CutsceneAnimatorMirror
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -95,7 +95,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1002
+        value: -1171
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -196,7 +196,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 2241
+        value: -2476
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -205,9 +205,9 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.5
-        value: 1185
-        inSlope: -2241
-        outSlope: -2241
+        value: -1332
+        inSlope: 2476
+        outSlope: 2476
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
@@ -288,7 +288,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -921
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -306,7 +306,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: -921
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -315,7 +315,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1.5
-        value: -921
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -324,7 +324,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 2
-        value: -921
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -333,7 +333,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 2.5
-        value: -921
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -449,6 +449,13 @@ AnimationClip:
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 3942078319
+      attribute: 1460864421
+      script: {fileID: 0}
+      typeID: 224
+      customType: 28
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 3942078319
       attribute: 538195251
       script: {fileID: 0}
       typeID: 224
@@ -457,13 +464,6 @@ AnimationClip:
     - serializedVersion: 2
       path: 995914302
       attribute: 538195251
-      script: {fileID: 0}
-      typeID: 224
-      customType: 28
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 3942078319
-      attribute: 1460864421
       script: {fileID: 0}
       typeID: 224
       customType: 28
@@ -568,7 +568,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1002
+        value: -1171
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -669,7 +669,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 2241
+        value: -2476
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -678,9 +678,9 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.5
-        value: 1185
-        inSlope: -2241
-        outSlope: -2241
+        value: -1332
+        inSlope: 2476
+        outSlope: 2476
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
@@ -761,7 +761,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -921
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -779,7 +779,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: -921
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -788,7 +788,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1.5
-        value: -921
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -797,7 +797,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 2
-        value: -921
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -806,7 +806,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 2.5
-        value: -921
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
