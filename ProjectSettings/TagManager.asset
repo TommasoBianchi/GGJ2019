@@ -7,6 +7,7 @@ TagManager:
   - Shell
   - PlayerShell
   - Weapon
+  - SpecialMaterial
   layers:
   - Default
   - TransparentFX

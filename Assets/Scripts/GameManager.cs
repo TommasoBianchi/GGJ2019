@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     private FloatValue[] allPlayersHealthValues;
     [SerializeField]
     private FloatValue[] allPlayersShellValues;
+    [SerializeField]
+    private Material[] allPlayersBaseMaterials;
 
     [SerializeField]
     private Transform[] twoPlayersSpawnPositions;
@@ -87,6 +89,7 @@ public class GameManager : MonoBehaviour
             player.SetKeyBindings(allPlayersKeyBindings[i]);
             player.SetHealthValue(allPlayersHealthValues[i]);
             player.SetShellValue(allPlayersShellValues[i]);
+            player.SetBaseMaterial(allPlayersBaseMaterials[i]);
             player.SetID(i + 1);
             players.Add(player);
         }

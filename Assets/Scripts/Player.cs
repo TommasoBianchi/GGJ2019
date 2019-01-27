@@ -2,6 +2,7 @@
 using UnityTools.DataManagement;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour
@@ -18,6 +19,7 @@ public class Player : MonoBehaviour
     private KeyBindings keyBindings;
     private FloatValue healthValue;
     private FloatValue shellValue;
+    private Material baseMaterial;
 
     private float currentHealth;
     private float currentShellHealth;
@@ -72,6 +74,14 @@ public class Player : MonoBehaviour
         }
 
         SetupShell(currentShellStats);
+
+        foreach (var renderer in GetComponentsInChildren<SkinnedMeshRenderer>())
+        {
+            if (renderer.gameObject.tag != "SpecialMaterial")
+            {
+                renderer.material = baseMaterial;
+            }
+        }
     }
 
     public void SetKeyBindings(KeyBindings keyBindings)
@@ -109,6 +119,18 @@ public class Player : MonoBehaviour
         {
             this.shellValue = shellValue;
             shellValue.SetValue(0);
+        }
+    }
+
+    public void SetBaseMaterial(Material baseMaterial)
+    {
+        if (this.baseMaterial != null)
+        {
+            Debug.LogError("Trying to reassign baseMaterial to player " + playerID);
+        }
+        else
+        {
+            this.baseMaterial = baseMaterial;
         }
     }
 
@@ -240,7 +262,12 @@ public class Player : MonoBehaviour
             }
             else if (shellValue.Value <= 0.5f)
             {
-                // TODO: Change material
+                // Setup broken material
+                PlayerShell playerShell = GetComponentInChildren<PlayerShell>();
+                if (playerShell != null)
+                {
+                    playerShell.ActivateBrokenMaterial();
+                }
             }
         }
         else
