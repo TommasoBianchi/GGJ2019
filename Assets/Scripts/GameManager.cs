@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
 
         mainCamera = Camera.main;
 
-        SetupMapBounds();
+        //SetupMapBounds();
 
         PlacePlayers();
         PlaceShells();

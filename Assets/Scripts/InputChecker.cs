@@ -66,7 +66,6 @@ public class InputChecker : MonoBehaviour
                     keyBindings.joystickNumber = i;
                     pressAnyText.gameObject.SetActive(false);
                     pressAText.gameObject.SetActive(true);
-                    Debug.Log("Player" + playerID + " selected to use joystick " + joystickNumber);
                     break;
                 }
             }
@@ -77,7 +76,6 @@ public class InputChecker : MonoBehaviour
             if (b != -1)
             {
                 keyBindings.attackKeyCode = b;
-                Debug.Log("Button " + b + " pressed as A on joystick " + joystickNumber);
                 aPressed = true;
                 pressAText.gameObject.SetActive(false);
                 pressBText.gameObject.SetActive(true);
@@ -89,7 +87,6 @@ public class InputChecker : MonoBehaviour
             if (b != -1 && b != keyBindings.attackKeyCode)
             {
                 keyBindings.defendKeyCode = b;
-                Debug.Log("Button " + b + " pressed as B on joystick " + joystickNumber);
                 bPressed = true;
                 pressBText.gameObject.SetActive(false);
                 readyText.gameObject.SetActive(true);
