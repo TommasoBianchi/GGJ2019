@@ -206,6 +206,15 @@ public class Player : MonoBehaviour
 
         animator.SetBool("Walking", xAxis != 0 || yAxis != 0);
 
+        if (xAxis != 0 || yAxis != 0)
+        {
+            SFXManager.PlayFootsteps(playerID);
+        }
+        else
+        {
+            SFXManager.StopFootsteps(playerID);
+        }
+
         myRigidbody.velocity = new Vector3(xAxis, 0, yAxis).normalized * currentShellStats.MovementSpeed;
         if (xAxis != 0 || yAxis != 0)
         {
