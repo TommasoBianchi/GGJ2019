@@ -6,4 +6,6 @@ public class Settings : ScriptableObject
 {
     
     public int NumberOfPlayers;
+    public float musicVolume;
+    public float sfxVolume;
 }
