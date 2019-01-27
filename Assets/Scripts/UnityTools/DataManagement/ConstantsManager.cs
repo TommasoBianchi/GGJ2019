@@ -16,6 +16,8 @@ namespace UnityTools.DataManagement
         private float baseCrabLife;
         [SerializeField]
         private float brokenShellEmissionFrequency;
+        [SerializeField, Range(0f, 1f)]
+        private float shieldAbsorbRate;
 
         [SerializeField]
         private Shell[] allShellPrefabs;
@@ -40,6 +42,7 @@ namespace UnityTools.DataManagement
         public static float TimeToPressToPickupShell { get { return instance.timeToPressToPickupShell; } }
         public static float BaseCrabLife { get { return instance.baseCrabLife; } }
         public static float BrokenShellEmissionFrequency { get { return instance.brokenShellEmissionFrequency; } }
+        public static float ShieldAbsorbRate { get { return instance.shieldAbsorbRate; } }
 
         public static Shell[] AllShellPrefabs { get { return instance.allShellPrefabs; } }
         public static GameObject[] AllPropsPrefabs { get { return instance.allPropsPrefabs; } }

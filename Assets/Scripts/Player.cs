@@ -255,6 +255,11 @@ public class Player : MonoBehaviour
 
     private void TakeDamage(float amount)
     {
+        if (animator.GetBool("Block"))
+        {
+            amount *= ConstantsManager.ShieldAbsorbRate;
+        }
+
         if(currentShellHealth > 0)
         {
             currentShellHealth = currentShellHealth - amount;
@@ -292,8 +297,7 @@ public class Player : MonoBehaviour
             {
                 // Die
                 areControlsEnabled = false;
-                animator.SetBool("Block", false);
-                animator.SetBool("IsWalking", false);
+                animator.SetBool("Walking", false);
                 myRigidbody.velocity = Vector3.zero;
                 Destroy(gameObject, 5);
             }
