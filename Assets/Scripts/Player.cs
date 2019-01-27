@@ -60,7 +60,7 @@ public class Player : MonoBehaviour
 
     public void SetID(int ID)
     {
-        if(playerID != 0)
+        if (playerID != 0)
         {
             Debug.LogError("Trying to reassign ID to player " + playerID);
         }
@@ -78,13 +78,7 @@ public class Player : MonoBehaviour
 
         SetupShell(currentShellStats);
 
-        foreach (var renderer in GetComponentsInChildren<SkinnedMeshRenderer>())
-        {
-            if (renderer.gameObject.tag != "SpecialMaterial")
-            {
-                renderer.material = baseMaterial;
-            }
-        }
+        ApplyBaseMaterial();
     }
 
     public void SetKeyBindings(KeyBindings keyBindings)
@@ -170,6 +164,19 @@ public class Player : MonoBehaviour
         currentShellStats = stats;
         currentShellHealth = stats.ShellHealth;
         shellValue.SetValue(currentShellHealth > 0 ? 1 : 0);
+
+        ApplyBaseMaterial();
+    }
+
+    private void ApplyBaseMaterial()
+    {
+        foreach (var renderer in GetComponentsInChildren<SkinnedMeshRenderer>())
+        {
+            if (renderer.gameObject.tag != "SpecialMaterial")
+            {
+                renderer.material = baseMaterial;
+            }
+        }
     }
 
     private void ReadInputs()
