@@ -49,6 +49,11 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if(UnityEngine.Random.value < Time.deltaTime * 0.05f)
+        {
+            SFXManager.PlaySFX(SFXManager.SFXType.PaguroVoice);
+        }
+
         if (!areControlsEnabled)
         {
             return;
@@ -60,7 +65,7 @@ public class Player : MonoBehaviour
 
     public void SetID(int ID)
     {
-        if(playerID != 0)
+        if (playerID != 0)
         {
             Debug.LogError("Trying to reassign ID to player " + playerID);
         }
@@ -78,13 +83,7 @@ public class Player : MonoBehaviour
 
         SetupShell(currentShellStats);
 
-        foreach (var renderer in GetComponentsInChildren<SkinnedMeshRenderer>())
-        {
-            if (renderer.gameObject.tag != "SpecialMaterial")
-            {
-                renderer.material = baseMaterial;
-            }
-        }
+        ApplyBaseMaterial();
     }
 
     public void SetKeyBindings(KeyBindings keyBindings)
@@ -141,6 +140,7 @@ public class Player : MonoBehaviour
     {
         SetupShell(shell.ShellStats);
         Destroy(shell.gameObject);
+        SFXManager.PlaySFX(SFXManager.SFXType.EquipShell);
     }
 
     public void EnableControls()
@@ -170,6 +170,19 @@ public class Player : MonoBehaviour
         currentShellStats = stats;
         currentShellHealth = stats.ShellHealth;
         shellValue.SetValue(currentShellHealth > 0 ? 1 : 0);
+
+        ApplyBaseMaterial();
+    }
+
+    private void ApplyBaseMaterial()
+    {
+        foreach (var renderer in GetComponentsInChildren<SkinnedMeshRenderer>())
+        {
+            if (renderer.gameObject.tag != "SpecialMaterial")
+            {
+                renderer.material = baseMaterial;
+            }
+        }
     }
 
     private void ReadInputs()
@@ -212,10 +225,12 @@ public class Player : MonoBehaviour
         if(currentShellStats.CanPickupShells && isInShellRange && Input.GetKeyDown(attackKeyCode) && !isDefending)
         {
             pressToGetShellUI.StartPressing();
+            SFXManager.PlaySFX(SFXManager.SFXType.ButtonsSwitch);
         }
         if (Input.GetKeyUp(attackKeyCode))
         {
             pressToGetShellUI.StopPressing();
+            SFXManager.PlaySFX(SFXManager.SFXType.ButtonsSwitch);
         }
 
         // Attack
@@ -231,6 +246,7 @@ public class Player : MonoBehaviour
                 projectile.SetSpeed(currentShellStats.ProjectileSpeed);
                 projectile.HitDamage = currentShellStats.HitDamage;
                 nextAttackTime = Time.time + currentShellStats.AttackCooldown;
+                SFXManager.PlaySFX(SFXManager.SFXType.CannonShoot);
             }
 
             TrailRenderer trailRenderer = GetComponentInChildren<TrailRenderer>();
@@ -256,11 +272,31 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void TakeDamage(float amount)
+    private void TakeDamage(float amount, bool fromRanged)
     {
         if (currentShellStats.CanBlock && animator.GetBool("Block"))
         {
             amount *= ConstantsManager.ShieldAbsorbRate;
+
+            if (fromRanged)
+            {
+                SFXManager.PlaySFX(SFXManager.SFXType.CannonImpactBlock);
+            }
+            else
+            {
+                SFXManager.PlaySFX(SFXManager.SFXType.MeleeWeaponBlock);
+            }
+        }
+        else
+        {
+            if (fromRanged)
+            {
+                SFXManager.PlaySFX(SFXManager.SFXType.CannonImpact);
+            }
+            else
+            {
+                SFXManager.PlaySFX(SFXManager.SFXType.MeleeWepon);
+            }
         }
 
         if(currentShellHealth > 0)
@@ -276,6 +312,7 @@ public class Player : MonoBehaviour
             {
                 // Break the current shell
                 SetupShell(baseShellStats);
+                SFXManager.PlaySFX(SFXManager.SFXType.ShellBreak);
             }
             else if (shellValue.Value <= 0.5f)
             {
@@ -284,6 +321,7 @@ public class Player : MonoBehaviour
                 if (playerShell != null)
                 {
                     playerShell.ActivateBrokenMaterial();
+                    SFXManager.PlaySFX(SFXManager.SFXType.ShellBreak);
                 }
             }
         }
@@ -299,6 +337,7 @@ public class Player : MonoBehaviour
             if(currentHealth <= 0)
             {
                 // Die
+                SFXManager.PlaySFX(SFXManager.SFXType.Death);
                 IsAlive = false;
                 areControlsEnabled = false;
                 animator.SetBool("Walking", false);
@@ -345,12 +384,12 @@ public class Player : MonoBehaviour
             if (otherPlayer == null)
             {
                 Projectile projectile = collision.transform.root.GetComponentInChildren<Projectile>();
-                TakeDamage(projectile.HitDamage);
+                TakeDamage(projectile.HitDamage, true);
                 Destroy(projectile.gameObject);
             }
             else if(otherPlayer.weaponCanHit)
             {
-                TakeDamage(otherPlayer.currentShellStats.HitDamage);
+                TakeDamage(otherPlayer.currentShellStats.HitDamage, false);
                 otherPlayer.weaponCanHit = false;
             }
         }

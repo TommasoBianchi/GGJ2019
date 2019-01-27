@@ -104,6 +104,7 @@ public class GameManager : MonoBehaviour
             if (winnerRoundsWon.Value == 2)
             {
                 // TODO: win 
+                SFXManager.PlaySFX(SFXManager.SFXType.Win);
                 Debug.Log("WIN");
                 return;
             }

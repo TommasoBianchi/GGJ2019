@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Settings
   m_EditorClassIdentifier: 
   NumberOfPlayers: 2
+  musicVolume: 1
+  sfxVolume: 1
