@@ -25,6 +25,8 @@ MonoBehaviour:
   minDistanceBetweenMapElements: 10
   countdownForJoystickSelection: 3
   countdownForRoundStart: 3
+  playerDieVFXPrefab: {fileID: 5121464599463861550, guid: da62b0c3a4038c249b5229640ece1137,
+    type: 3}
   pressToGetShellUIPrefab: {fileID: 7173272252483661686, guid: a1b1c4cc1f687604f9add00015af2b4c,
     type: 3}
   healthTransitionTime: 1

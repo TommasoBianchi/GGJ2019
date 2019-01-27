@@ -32,6 +32,9 @@ namespace UnityTools.DataManagement
         private int countdownForRoundStart;
 
         [SerializeField]
+        private GameObject playerDieVFXPrefab;
+
+        [SerializeField]
         private PressToGetShellUI pressToGetShellUIPrefab;
         [SerializeField]
         private float healthTransitionTime;
@@ -50,6 +53,8 @@ namespace UnityTools.DataManagement
         public static float MinDistanceBetweenMapElements { get { return instance.minDistanceBetweenMapElements; } }
         public static int CountdownForJoystickSelection { get { return instance.countdownForJoystickSelection; } }
         public static int CountdownForRoundStart { get { return instance.countdownForRoundStart; } }
+
+        public static GameObject PlayerDieVFXPrefab { get { return instance.playerDieVFXPrefab; } }
 
         public static PressToGetShellUI PressToGetShellUIPrefab { get { return instance.pressToGetShellUIPrefab; } }
         public static float HealthTransitionTime { get { return instance.healthTransitionTime; } }

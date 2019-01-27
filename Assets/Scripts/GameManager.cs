@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
     private List<Transform> props;
 
     private bool isPlayingRound = false;
+    public static bool IsPlayingRound { get { return _instance.isPlayingRound; } }
 
     private void Awake()
     {
@@ -98,7 +99,7 @@ public class GameManager : MonoBehaviour
         {
             Player winner = alivePlayers[0];
 
-            IntValue winnerRoundsWon = _instance.allPlayersRoundWonValues[alivePlayers.IndexOf(winner)];
+            IntValue winnerRoundsWon = _instance.allPlayersRoundWonValues[_instance.players.IndexOf(winner)];
             winnerRoundsWon.SetValue(winnerRoundsWon.Value + 1);
 
             if (winnerRoundsWon.Value == 2)

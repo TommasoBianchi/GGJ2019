@@ -701,6 +701,8 @@ MonoBehaviour:
     clips:
     - {fileID: 8300000, guid: 125d0f635805dc4468057d8fadcc6bf0, type: 3}
     - {fileID: 8300000, guid: e353eb992cc39ee41b048778b9c439cb, type: 3}
+  musicVolumeMultiplier: 0.9
+  sfxMusicMultiplier: 1
 --- !u!1 &783849647
 GameObject:
   m_ObjectHideFlags: 0

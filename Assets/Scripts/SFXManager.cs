@@ -27,6 +27,11 @@ public class SFXManager : MonoBehaviour
     [SerializeField]
     private SFXHolder[] soundEffects;
 
+    [SerializeField, Range(0f, 1f)]
+    private float musicVolumeMultiplier;
+    [SerializeField, Range(0f, 1f)]
+    private float sfxMusicMultiplier;
+
     private static SFXManager _instance;
 
     private Dictionary<SFXType, AudioClip[]> clipsByType;
@@ -46,14 +51,14 @@ public class SFXManager : MonoBehaviour
 
         clipsByType = soundEffects.ToDictionary(holder => holder.type, holder => holder.clips);
 
-        GetComponent<AudioSource>().volume = settings.musicVolume;
+        GetComponent<AudioSource>().volume = settings.musicVolume * musicVolumeMultiplier;
         sfxSource = gameObject.AddComponent<AudioSource>();
-        sfxSource.volume = settings.sfxVolume;
+        sfxSource.volume = settings.sfxVolume * sfxMusicMultiplier;
     }
 
     public static void PlaySFX(SFXType type)
     {
-        if (_instance.clipsByType.ContainsKey(type))
+        if (_instance.clipsByType.ContainsKey(type) && _instance.clipsByType[type].Length > 0)
         {
             AudioClip[] clips = _instance.clipsByType[type];
             AudioClip randomClip = clips[Random.Range(0, clips.Length)];
