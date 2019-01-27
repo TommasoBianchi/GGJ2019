@@ -15,7 +15,7 @@ MonoBehaviour:
   movementSpeed: 15
   hitDamage: 75
   attackCooldown: 1
-  shellHealth: 100
+  shellHealth: 110
   canAttack: 1
   canBlock: 1
   canPickupShells: 0
