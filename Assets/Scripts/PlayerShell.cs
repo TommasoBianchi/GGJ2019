@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityTools.DataManagement;
 
 [RequireComponent(typeof(MeshRenderer))]
 public class PlayerShell : MonoBehaviour
@@ -12,17 +13,18 @@ public class PlayerShell : MonoBehaviour
     private bool animateEmission = false;
     private float emissionStartTime;
     private MeshRenderer meshRenderer;
+    private float frequency;
 
     private void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
+        frequency = ConstantsManager.BrokenShellEmissionFrequency;
     }
 
     private void Update()
     {
-        float freq = 1;
         float t = Time.time - emissionStartTime;
-        float emission = Mathf.Sin(t * freq);
+        float emission = Mathf.Sin(t * frequency);
         meshRenderer.material.SetColor("_EmissionColor", emissionColor * (2 + emission));
     }
 
