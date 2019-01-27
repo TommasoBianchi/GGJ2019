@@ -30,6 +30,9 @@ public class GameManager : MonoBehaviour
     private RectTransform[] allPlayersHealthUI;
 
     [SerializeField]
+    private EndMatchUI endMatchUI;
+
+    [SerializeField]
     private Transform[] twoPlayersSpawnPositions;
     [SerializeField]
     private Transform[] threePlayersSpawnPositions;
@@ -104,9 +107,8 @@ public class GameManager : MonoBehaviour
 
             if (winnerRoundsWon.Value == 2)
             {
-                // TODO: win 
+                _instance.endMatchUI.gameObject.SetActive(true);
                 SFXManager.PlaySFX(SFXManager.SFXType.Win);
-                Debug.Log("WIN");
                 return;
             }
 
