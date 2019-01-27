@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 10
   timeToPressToPickupShell: 1
-  baseCrabLife: 10
+  baseCrabLife: 100
   brokenShellEmissionFrequency: 2
   allShellPrefabs:
   - {fileID: 2246477100717879680, guid: 1df1c917875c17747b06c56e11a82ce7, type: 3}

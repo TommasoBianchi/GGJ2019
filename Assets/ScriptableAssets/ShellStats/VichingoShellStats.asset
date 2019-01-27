@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1487c8d18b68b434f91184d49a88a286, type: 3}
   m_Name: VichingoShellStats
   m_EditorClassIdentifier: 
-  movementSpeed: 10
-  hitDamage: 5
-  attackCooldown: 0
-  shellHealth: 50
+  movementSpeed: 9
+  hitDamage: 75
+  attackCooldown: 1.5
+  shellHealth: 200
   canAttack: 1
   canBlock: 1
   canPickupShells: 0
