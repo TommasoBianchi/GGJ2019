@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ea0dc317e4158f45b9a0a9f0b5bfa71, type: 3}
+  m_Name: Constants
+  m_EditorClassIdentifier: 
+  rotationSpeed: 10
+  timeToPressToPickupShell: 1
+  baseCrabLife: 100
+  brokenShellEmissionFrequency: 2
+  shieldAbsorbRate: 0.5
+  allShellPrefabs:
+  - {fileID: 2246477100717879680, guid: 1df1c917875c17747b06c56e11a82ce7, type: 3}
+  - {fileID: 2246477100717879680, guid: dd7ec2f7d7fd8e048a7621cfa35c8ef5, type: 3}
+  - {fileID: 2246477100717879680, guid: 8737bb1a8418c30489876cda3fa05012, type: 3}
+  allPropsPrefabs: []
+  minDistanceBetweenMapElements: 10
+  countdownForJoystickSelection: 10
+  countdownForRoundStart: 3
+  playerDieVFXPrefab: {fileID: 5121464599463861550, guid: da62b0c3a4038c249b5229640ece1137,
+    type: 3}
+  pressToGetShellUIPrefab: {fileID: 7173272252483661686, guid: a1b1c4cc1f687604f9add00015af2b4c,
+    type: 3}
+  healthTransitionTime: 1

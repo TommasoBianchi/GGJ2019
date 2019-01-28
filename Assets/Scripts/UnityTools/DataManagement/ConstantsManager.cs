@@ -8,13 +8,56 @@ namespace UnityTools.DataManagement
     [CreateAssetMenu(menuName = "UnityTools/DataManagement/ConstantsManager")]
     public class ConstantsManager : ScriptableObject
     {
-        [Header("Example")]
         [SerializeField]
-        private FloatOverridableConstant exampleConstant;
+        private float rotationSpeed;
+        [SerializeField]
+        private float timeToPressToPickupShell;
+        [SerializeField]
+        private float baseCrabLife;
+        [SerializeField]
+        private float brokenShellEmissionFrequency;
+        [SerializeField, Range(0f, 1f)]
+        private float shieldAbsorbRate;
+
+        [SerializeField]
+        private Shell[] allShellPrefabs;
+        [SerializeField]
+        private GameObject[] allPropsPrefabs;
+
+        [SerializeField]
+        private float minDistanceBetweenMapElements;
+        [SerializeField]
+        private int countdownForJoystickSelection;
+        [SerializeField]
+        private int countdownForRoundStart;
+
+        [SerializeField]
+        private GameObject playerDieVFXPrefab;
+
+        [SerializeField]
+        private PressToGetShellUI pressToGetShellUIPrefab;
+        [SerializeField]
+        private float healthTransitionTime;
 
         #region Properties
 
-        public static float ExampleConstant { get { return _instance.exampleConstant; } }
+        public static float RotationSpeed { get { return instance.rotationSpeed; } }
+        public static float TimeToPressToPickupShell { get { return instance.timeToPressToPickupShell; } }
+        public static float BaseCrabLife { get { return instance.baseCrabLife; } }
+        public static float BrokenShellEmissionFrequency { get { return instance.brokenShellEmissionFrequency; } }
+        public static float ShieldAbsorbRate { get { return instance.shieldAbsorbRate; } }
+
+        public static Shell[] AllShellPrefabs { get { return instance.allShellPrefabs; } }
+        public static GameObject[] AllPropsPrefabs { get { return instance.allPropsPrefabs; } }
+
+        public static float MinDistanceBetweenMapElements { get { return instance.minDistanceBetweenMapElements; } }
+        public static int CountdownForJoystickSelection { get { return instance.countdownForJoystickSelection; } }
+        public static int CountdownForRoundStart { get { return instance.countdownForRoundStart; } }
+
+        public static GameObject PlayerDieVFXPrefab { get { return instance.playerDieVFXPrefab; } }
+
+        public static PressToGetShellUI PressToGetShellUIPrefab { get { return instance.pressToGetShellUIPrefab; } }
+        public static float HealthTransitionTime { get { return instance.healthTransitionTime; } }
 
         #endregion
 
