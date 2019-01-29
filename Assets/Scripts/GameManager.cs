@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
     {
         List<Player> alivePlayers = _instance.players.Where(pl => pl.IsAlive).ToList();
 
-        if(_instance.isPlayingRound &&  alivePlayers.Count == 1)
+        if(_instance.isPlayingRound && alivePlayers.Count == 1)
         {
             Player winner = alivePlayers[0];
 

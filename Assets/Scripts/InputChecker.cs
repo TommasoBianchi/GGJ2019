@@ -59,25 +59,23 @@ public class InputChecker : MonoBehaviour
 
         if (!anyPressed)
         {
-            for (int i = 1; i <= 16; i++)
+            int i = CheckJoystickNumber();
+            if(i != -1)
             {
-                int b = CheckButtonNumber(i);
-                if (b != -1 && !boundJoystick.Contains(i))
-                {
-                    joystickNumber = i;
-                    keyBindings.joystickNumber = i;
-                    pressAnyText.gameObject.SetActive(false);
-                    pressAText.gameObject.SetActive(true);
-                    break;
-                }
+                Debug.Log("Assigning joystick " + i + " to player" + playerID + " in frame " + Time.frameCount);
+                joystickNumber = i;
+                keyBindings.joystickNumber = i;
+                pressAnyText.gameObject.SetActive(false);
+                pressAText.gameObject.SetActive(true);
             }
         }
         else if (!aPressed)
         {
-            int b = CheckButtonNumber(joystickNumber);
-            if (b != -1)
+            KeyCode k = CheckButtonNumber(joystickNumber);
+            if (k != KeyCode.None)
             {
-                keyBindings.attackKeyCode = b;
+                Debug.Log("Assigning button " + k.ToString() + " to attack for player" + playerID + " in frame " + Time.frameCount);
+                keyBindings.attackKeyCode = k;
                 aPressed = true;
                 pressAText.gameObject.SetActive(false);
                 pressBText.gameObject.SetActive(true);
@@ -85,10 +83,10 @@ public class InputChecker : MonoBehaviour
         }
         else
         {
-            int b = CheckButtonNumber(joystickNumber);
-            if (b != -1 && b != keyBindings.attackKeyCode)
+            KeyCode k = CheckButtonNumber(joystickNumber);
+            if (k != KeyCode.None && k != keyBindings.attackKeyCode)
             {
-                keyBindings.defendKeyCode = b;
+                keyBindings.defendKeyCode = k;
                 bPressed = true;
                 pressBText.gameObject.SetActive(false);
                 readyText.gameObject.SetActive(true);
@@ -125,18 +123,82 @@ public class InputChecker : MonoBehaviour
         boundJoystick = null;
     }
 
-    private int CheckButtonNumber(int joystickNumber)
+    private int CheckJoystickNumber()
     {
-        for (int i = 0; i < 16; i++)
+        // Check keyboard
+        KeyCode kk = CheckKeyboardKey();
+        if (kk != KeyCode.None && !boundJoystick.Contains(0))
         {
-            KeyCode buttonKeyCode;
-            Enum.TryParse("Joystick" + joystickNumber + "Button" + i, out buttonKeyCode);
-            if (Input.GetKeyDown(buttonKeyCode))
+            return 0;
+        }
+
+        // Check all joysticks
+        for (int i = 1; i <= 8; i++)
+        {
+            KeyCode k = CheckButtonNumber(i);
+            if (k != KeyCode.None && !boundJoystick.Contains(i))
             {
                 return i;
             }
         }
 
         return -1;
+    }
+
+    private KeyCode CheckButtonNumber(int joystickNumber)
+    {
+        if(joystickNumber == 0)
+        {
+            return CheckKeyboardKey();
+        }
+
+        for (int i = 0; i < 20; i++)
+        {
+            KeyCode buttonKeyCode;
+            Enum.TryParse("Joystick" + joystickNumber + "Button" + i, out buttonKeyCode);
+            if (Input.GetKeyDown(buttonKeyCode))
+            {
+                return buttonKeyCode;
+            }
+        }
+
+        return KeyCode.None;
+    }
+
+    private KeyCode CheckKeyboardKey()
+    {
+        foreach (var k in keyboardKeycodes)
+        {
+            if (Input.GetKeyDown(k))
+            {
+                return k;
+            }
+        }
+
+        return KeyCode.None;
+    }
+
+    private static readonly KeyCode[] joystickKeycodes = GetAllJoystickKeycodes().ToArray();
+    private static readonly KeyCode[] keyboardKeycodes = Enum.GetValues(typeof(KeyCode)).OfType<KeyCode>().Except(joystickKeycodes).
+                                                            Except(new KeyCode[] { KeyCode.W, KeyCode.A, KeyCode.S, KeyCode.D,
+                                                                   KeyCode.UpArrow, KeyCode.LeftArrow, KeyCode.DownArrow, KeyCode.RightArrow }).ToArray();
+
+    private static List<KeyCode> GetAllJoystickKeycodes()
+    {
+        List<KeyCode> codes = new List<KeyCode>();
+        KeyCode buttonKeyCode;
+
+        for (int b = 0; b < 20; b++)
+        {
+            for (int j = 1; j <= 8; j++)
+            {
+                Enum.TryParse("Joystick" + j + "Button" + b, out buttonKeyCode);
+                codes.Add(buttonKeyCode);
+            }
+            Enum.TryParse("Joystick" + "Button" + b, out buttonKeyCode);
+            codes.Add(buttonKeyCode);
+        }
+
+        return codes;
     }
 }

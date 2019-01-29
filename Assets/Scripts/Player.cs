@@ -28,9 +28,6 @@ public class Player : MonoBehaviour
     private Animator animator;
     private PressToGetShellUI pressToGetShellUI;
 
-    private KeyCode attackKeyCode;
-    private KeyCode defendKeyCode;
-
     private bool isInShellRange = false;
     private bool areControlsEnabled = false;
     private float nextAttackTime = 0;
@@ -72,13 +69,6 @@ public class Player : MonoBehaviour
         else
         {
             playerID = ID;
-        }
-
-        bool keyCodeSetup = Enum.TryParse("Joystick" + keyBindings.joystickNumber + "Button" + keyBindings.attackKeyCode, out attackKeyCode);
-        keyCodeSetup &= Enum.TryParse("Joystick" + keyBindings.joystickNumber + "Button" + keyBindings.defendKeyCode, out defendKeyCode);
-        if (!keyCodeSetup)
-        {
-            Debug.LogError("Problem in setupping key codes for player" + playerID);
         }
 
         SetupShell(currentShellStats);
@@ -187,7 +177,7 @@ public class Player : MonoBehaviour
 
     private void ReadInputs()
     {
-        bool isDefending = Input.GetKey(defendKeyCode);
+        bool isDefending = Input.GetKey(keyBindings.defendKeyCode);
         bool isInAttackState = animator.GetCurrentAnimatorStateInfo(1).IsName("Attack");
         if (!isInAttackState)
         {
@@ -198,7 +188,7 @@ public class Player : MonoBehaviour
                 trailRenderer.enabled = false;
             }
         }
-        bool canAttack = currentShellStats.CanAttack && Input.GetKeyDown(attackKeyCode) && !isDefending && !isInAttackState;
+        bool canAttack = currentShellStats.CanAttack && Input.GetKeyDown(keyBindings.attackKeyCode) && !isDefending && !isInAttackState;
 
         // Movement
         float xAxis = Input.GetAxis("HorizontalJ" + keyBindings.joystickNumber);
@@ -206,7 +196,7 @@ public class Player : MonoBehaviour
 
         animator.SetBool("Walking", xAxis != 0 || yAxis != 0);
 
-        if (xAxis != 0 || yAxis != 0)
+        if ((xAxis != 0 || yAxis != 0) && !isDefending)
         {
             SFXManager.PlayFootsteps(playerID);
         }
@@ -231,12 +221,12 @@ public class Player : MonoBehaviour
         }
 
         // Grab shell
-        if(currentShellStats.CanPickupShells && isInShellRange && Input.GetKeyDown(attackKeyCode) && !isDefending)
+        if(currentShellStats.CanPickupShells && isInShellRange && Input.GetKeyDown(keyBindings.attackKeyCode) && !isDefending)
         {
             pressToGetShellUI.StartPressing();
             SFXManager.PlaySFX(SFXManager.SFXType.ButtonsSwitch);
         }
-        if (Input.GetKeyUp(attackKeyCode))
+        if (Input.GetKeyUp(keyBindings.attackKeyCode))
         {
             pressToGetShellUI.StopPressing();
             SFXManager.PlaySFX(SFXManager.SFXType.ButtonsSwitch);
@@ -266,11 +256,11 @@ public class Player : MonoBehaviour
         }
 
         // Block
-        if (currentShellStats.CanBlock && Input.GetKeyDown(defendKeyCode))
+        if (currentShellStats.CanBlock && Input.GetKeyDown(keyBindings.defendKeyCode))
         {
             animator.SetBool("Block", true);
         }
-        else if (currentShellStats.CanBlock && Input.GetKeyUp(defendKeyCode))
+        else if (currentShellStats.CanBlock && Input.GetKeyUp(keyBindings.defendKeyCode))
         {
             animator.SetBool("Block", false);
         }
@@ -348,7 +338,6 @@ public class Player : MonoBehaviour
             {
                 // Die
                 SFXManager.PlaySFX(SFXManager.SFXType.Death);
-                IsAlive = false;
                 areControlsEnabled = false;
                 animator.SetBool("Walking", false);
                 myRigidbody.velocity = Vector3.zero;
@@ -407,6 +396,8 @@ public class Player : MonoBehaviour
 
     private void OnDestroy()
     {
+        SFXManager.StopFootsteps(playerID);
+
         if (GameManager.IsPlayingRound)
         {
             Destroy(Instantiate(ConstantsManager.PlayerDieVFXPrefab, transform.position, Quaternion.identity), 10);
@@ -416,6 +407,7 @@ public class Player : MonoBehaviour
         {
             Destroy(pressToGetShellUI.gameObject);
         }
+        IsAlive = false;
         GameManager.PlayerDied();
     }
 }
