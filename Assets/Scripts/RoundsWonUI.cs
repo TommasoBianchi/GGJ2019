@@ -25,4 +25,9 @@ public class RoundsWonUI : MonoBehaviour
             transform.GetChild(i).GetComponent<Image>().sprite = i < roundsWonAmount ? roundWonSprite : roundNotWonSprite;
         }
     }
+
+    private void OnDestroy()
+    {
+        roundsWonValue.onValueChanged -= SetupSprites;
+    }
 }

@@ -38,6 +38,8 @@ public class InputChecker : MonoBehaviour
         }
 
         allInputCheckers[playerID - 1] = this;
+
+        keyBindings.Clear();
     }
 
     private void Update()
@@ -105,13 +107,22 @@ public class InputChecker : MonoBehaviour
         if(joystickNumber != -1)
         {
             anyPressed = true;
-            boundJoystick.Add(joystickNumber);
+            if (boundJoystick != null)
+            {
+                boundJoystick.Add(joystickNumber);
+            }
         }
     }
 
     public static int ReadyPlayersCount()
     {
         return allInputCheckers.Count(ic => ic.anyPressed && ic.aPressed && ic.bPressed);
+    }
+
+    public static void ClearData()
+    {
+        allInputCheckers = null;
+        boundJoystick = null;
     }
 
     private int CheckButtonNumber(int joystickNumber)

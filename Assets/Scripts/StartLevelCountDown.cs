@@ -25,6 +25,7 @@ public class StartLevelCountDown : MonoBehaviour
             {
                 // Start game
                 settings.NumberOfPlayers = InputChecker.ReadyPlayersCount();
+                InputChecker.ClearData();
                 SceneManager.LoadScene("ArenaScene");
                 text.enabled = false;
             }
