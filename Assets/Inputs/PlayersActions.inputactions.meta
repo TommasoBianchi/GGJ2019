@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 1eae347cf5a7dca40b8f47594ed2fcdc
+ScriptedImporter:
+  fileIDToRecycleName:
+    11400000: <root>
+    11400002: Gameplay/GrabEnd
+    11400008: Gameplay/Attack
+    11400010: Gameplay/Defend
+    11400012: Gameplay/Move
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: e2fdc6edf8744b38b702a2a5ee3541b2, type: 3}
+  generateWrapperCode: 1
+  wrapperCodePath: 
+  wrapperClassName: 
+  wrapperCodeNamespace: 
+  generateActionEvents: 0
+  generateInterfaces: 1
+  actionGuids: []
+  actionMapGuids: []

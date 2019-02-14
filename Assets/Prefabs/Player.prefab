@@ -139,3 +139,5 @@ MonoBehaviour:
   playerID: 0
   baseShellStats: {fileID: 11400000, guid: 223f6f7d8cd03e84da21301c0383add9, type: 2}
   modelContainer: {fileID: 3937739063377770043}
+  actions:
+    m_Asset: {fileID: 11400000, guid: 1eae347cf5a7dca40b8f47594ed2fcdc, type: 3}

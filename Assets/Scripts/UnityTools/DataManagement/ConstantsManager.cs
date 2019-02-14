@@ -39,6 +39,9 @@ namespace UnityTools.DataManagement
         [SerializeField]
         private float healthTransitionTime;
 
+        [SerializeField]
+        private PlayersActions playersActions;
+
         #region Properties
 
         public static float RotationSpeed { get { return instance.rotationSpeed; } }
@@ -58,6 +61,8 @@ namespace UnityTools.DataManagement
 
         public static PressToGetShellUI PressToGetShellUIPrefab { get { return instance.pressToGetShellUIPrefab; } }
         public static float HealthTransitionTime { get { return instance.healthTransitionTime; } }
+
+        public static PlayersActions PlayersActions { get { return instance.playersActions; } }
 
         #endregion
 

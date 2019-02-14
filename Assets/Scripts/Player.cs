@@ -3,6 +3,8 @@ using UnityTools.DataManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.Experimental.Input;
+using UnityEngine.Experimental.Input.Plugins.Users;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour
@@ -35,6 +37,17 @@ public class Player : MonoBehaviour
 
     public bool IsAlive { get; private set; }
 
+    private bool isWalking;
+    private bool isDefending;
+    private bool isAttacking;
+    private bool isGrabbingShell;
+
+    private Quaternion targetRotation;
+
+    private PlayersActions actions;
+
+    //public PlayersActions actions;
+
     private void Awake()
     {
         myRigidbody = GetComponent<Rigidbody>();
@@ -51,13 +64,40 @@ public class Player : MonoBehaviour
             SFXManager.PlaySFX(SFXManager.SFXType.PaguroVoice);
         }
 
-        if (!areControlsEnabled)
+        // Turn off isAttacking when the attack animation ends
+        bool isInAttackState = animator.GetCurrentAnimatorStateInfo(1).IsName("Attack");
+        if (!isInAttackState && isAttacking)
         {
-            return;
+            isAttacking = false;
+            weaponCanHit = false;
+            TrailRenderer trailRenderer = GetComponentInChildren<TrailRenderer>();
+            if (trailRenderer != null)
+            {
+                trailRenderer.enabled = false;
+            }
         }
 
+        // Rotate
+        if (isWalking)
+        {
+            float rotationSpeed = ConstantsManager.RotationSpeed;
+            if (rotationSpeed > 0)
+            {
+                myRigidbody.rotation = Quaternion.Slerp(myRigidbody.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            }
+            else
+            {
+                myRigidbody.rotation = targetRotation;
+            }
+        }
+
+        //if (!areControlsEnabled)
+        //{
+        //    return;
+        //}
+
         // Read controller inputs
-        ReadInputs();
+        //ReadInputs();
     }
 
     public void SetID(int ID)
@@ -74,6 +114,21 @@ public class Player : MonoBehaviour
         SetupShell(currentShellStats);
 
         ApplyBaseMaterial();
+
+        // Setup inputs
+
+        actions = new PlayersActions(Instantiate(ConstantsManager.PlayersActions.asset));
+
+        //InputUser me = InputUser.PerformPairingWithDevice(keyBindings.inputDevice);
+        InputUser me = InputUser.PerformPairingWithDevice(ID == 1 ? (InputDevice)Gamepad.current : (InputDevice)Keyboard.current);
+        me.AssociateActionsWithUser(actions);
+
+        actions.Gameplay.Attack.performed += OnAttack;
+        actions.Gameplay.GrabEnd.performed += OnGrabEnd;
+        actions.Gameplay.Defend.performed += OnDefend;
+        actions.Gameplay.Defend.cancelled += OnDefendEnd;
+        actions.Gameplay.Move.performed += OnMove;
+        actions.Gameplay.Move.cancelled += OnMove;
     }
 
     public void SetKeyBindings(KeyBindings keyBindings)
@@ -136,6 +191,7 @@ public class Player : MonoBehaviour
     public void EnableControls()
     {
         areControlsEnabled = true;
+        actions.Enable();
     }
 
     public void SetWeaponCanHit(bool value)
@@ -175,6 +231,9 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// DEPRECATED
+    /// </summary>
     private void ReadInputs()
     {
         bool isDefending = Input.GetKey(keyBindings.defendKeyCode);
@@ -271,6 +330,102 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnAttack(InputAction.CallbackContext context)
+    {
+        // Grab shell
+        if (currentShellStats.CanPickupShells && isInShellRange && !isDefending && !isGrabbingShell)
+        {
+            isGrabbingShell = true;
+            pressToGetShellUI.StartPressing();
+            SFXManager.PlaySFX(SFXManager.SFXType.ButtonsSwitch);
+        }
+
+        // Attack
+        bool canAttack = currentShellStats.CanAttack && !isDefending && !isAttacking;
+
+        if (canAttack && Time.time >= nextAttackTime)
+        {
+            animator.SetTrigger("Attack");
+            weaponCanHit = true;
+            if (currentShellStats.IsRanged)
+            {
+                Projectile projectile = Instantiate(currentShellStats.ProjectilePrefab,
+                                                     GetComponentInChildren<FiringSpot>().transform.position,
+                                                     Quaternion.LookRotation(transform.forward, transform.up));
+                projectile.SetSpeed(currentShellStats.ProjectileSpeed);
+                projectile.HitDamage = currentShellStats.HitDamage;
+                nextAttackTime = Time.time + currentShellStats.AttackCooldown;
+                SFXManager.PlaySFX(SFXManager.SFXType.CannonShoot);
+            }
+
+            TrailRenderer trailRenderer = GetComponentInChildren<TrailRenderer>();
+            if (trailRenderer != null)
+            {
+                trailRenderer.enabled = true;
+            }
+        }
+
+        isAttacking = true;
+    }
+
+    private void OnGrabEnd(InputAction.CallbackContext context)
+    {
+        if (isGrabbingShell)
+        {
+            pressToGetShellUI.StopPressing();
+            SFXManager.PlaySFX(SFXManager.SFXType.ButtonsSwitch);
+            isGrabbingShell = false;
+        }
+    }
+
+    private void OnDefend(InputAction.CallbackContext context)
+    {
+        if (currentShellStats.CanBlock)
+        {
+            animator.SetBool("Block", true);
+        }
+
+        isDefending = true;
+    }
+
+    private void OnDefendEnd(InputAction.CallbackContext context)
+    {
+        if (currentShellStats.CanBlock)
+        {
+            animator.SetBool("Block", false);
+        }
+
+        isDefending = false;
+    }
+
+    private void OnMove(InputAction.CallbackContext context)
+    {
+        Vector2 direction = context.ReadValue<Vector2>();
+        Vector3 fullDirection = new Vector3(direction.x, 0, direction.y);
+
+        isWalking = direction != Vector2.zero;
+
+        animator.SetBool("Walking", isWalking);
+
+        if (isWalking && !isDefending)
+        {
+            SFXManager.PlayFootsteps(playerID);
+        }
+        else
+        {
+            SFXManager.StopFootsteps(playerID);
+        }
+
+        if (!isDefending)
+        {
+            myRigidbody.velocity = fullDirection * currentShellStats.MovementSpeed;
+        }
+        if (isWalking)
+        {
+            targetRotation = Quaternion.LookRotation(fullDirection, Vector3.up);            
+        }
+    }
+
     private void TakeDamage(float amount, bool fromRanged)
     {
         if (currentShellStats.CanBlock && animator.GetBool("Block"))
@@ -338,7 +493,7 @@ public class Player : MonoBehaviour
             {
                 // Die
                 SFXManager.PlaySFX(SFXManager.SFXType.Death);
-                areControlsEnabled = false;
+                actions.Disable();
                 animator.SetBool("Walking", false);
                 myRigidbody.velocity = Vector3.zero;
                 Destroy(gameObject, 3);

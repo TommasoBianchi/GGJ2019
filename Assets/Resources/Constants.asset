@@ -30,3 +30,5 @@ MonoBehaviour:
   pressToGetShellUIPrefab: {fileID: 7173272252483661686, guid: a1b1c4cc1f687604f9add00015af2b4c,
     type: 3}
   healthTransitionTime: 1
+  playersActions:
+    m_Asset: {fileID: 11400000, guid: 1eae347cf5a7dca40b8f47594ed2fcdc, type: 3}
