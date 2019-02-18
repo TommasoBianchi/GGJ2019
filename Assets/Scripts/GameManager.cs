@@ -62,12 +62,6 @@ public class GameManager : MonoBehaviour
             DestroyImmediate(gameObject);
         }
 
-        Debug.Log("Connected controllers:");
-        foreach(var name in Input.GetJoystickNames())
-        {
-            Debug.Log("Controller: " + name);
-        }
-
         mainCamera = Camera.main;
 
         foreach (var r in allPlayersRoundWonValues)

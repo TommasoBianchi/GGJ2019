@@ -123,12 +123,12 @@ public class Player : MonoBehaviour
         InputUser me = InputUser.PerformPairingWithDevice(ID == 1 ? (InputDevice)Gamepad.current : (InputDevice)Keyboard.current);
         me.AssociateActionsWithUser(actions);
 
-        actions.Gameplay.Attack.performed += OnAttack;
-        actions.Gameplay.GrabEnd.performed += OnGrabEnd;
-        actions.Gameplay.Defend.performed += OnDefend;
-        actions.Gameplay.Defend.cancelled += OnDefendEnd;
-        actions.Gameplay.Move.performed += OnMove;
-        actions.Gameplay.Move.cancelled += OnMove;
+        actions.Gameplay.Attack.performed += ctx => OnAttack();
+        actions.Gameplay.GrabEnd.performed += ctx => OnGrabEnd();
+        actions.Gameplay.Defend.performed += ctx => OnDefend();
+        actions.Gameplay.Defend.cancelled += ctx => OnDefendEnd();
+        actions.Gameplay.Move.performed += ctx => OnMove(ctx.ReadValue<Vector2>());
+        actions.Gameplay.Move.cancelled += ctx => OnMove(ctx.ReadValue<Vector2>());
     }
 
     public void SetKeyBindings(KeyBindings keyBindings)
@@ -330,7 +330,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnAttack(InputAction.CallbackContext context)
+    private void OnAttack()
     {
         // Grab shell
         if (currentShellStats.CanPickupShells && isInShellRange && !isDefending && !isGrabbingShell)
@@ -368,7 +368,7 @@ public class Player : MonoBehaviour
         isAttacking = true;
     }
 
-    private void OnGrabEnd(InputAction.CallbackContext context)
+    private void OnGrabEnd()
     {
         if (isGrabbingShell)
         {
@@ -378,7 +378,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnDefend(InputAction.CallbackContext context)
+    private void OnDefend()
     {
         if (currentShellStats.CanBlock)
         {
@@ -388,7 +388,7 @@ public class Player : MonoBehaviour
         isDefending = true;
     }
 
-    private void OnDefendEnd(InputAction.CallbackContext context)
+    private void OnDefendEnd()
     {
         if (currentShellStats.CanBlock)
         {
@@ -398,10 +398,11 @@ public class Player : MonoBehaviour
         isDefending = false;
     }
 
-    private void OnMove(InputAction.CallbackContext context)
+    private void OnMove(Vector2 direction)
     {
-        Vector2 direction = context.ReadValue<Vector2>();
         Vector3 fullDirection = new Vector3(direction.x, 0, direction.y);
+
+        Debug.Log("Player " + playerID + ": " + direction);
 
         isWalking = direction != Vector2.zero;
 
